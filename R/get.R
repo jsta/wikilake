@@ -7,6 +7,7 @@
 #' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lac La Belle, Michigan")
 #' lake_wiki("Bankson Lake")
+#' lake_wiki("Fisher Lake (Michigan)")
 #' lake_wiki("Beals Lake")
 #' lake_wiki("Devils Lake (Michigan)")
 #' lake_wiki("Lake Michigan")
@@ -99,6 +100,8 @@ get_lake_wiki <- function(lake_name){
                              grep("W", coords),
                              grep("N", coords)))][1:2]
 
+      coords <- gsub("\\[.\\]", "", coords)
+
       coords <- paste( as.numeric(
           sapply(gsub(";", "", coords),
              function(x) substring(x, 1, nchar(x) - 1))),
@@ -141,25 +144,3 @@ get_lake_wiki <- function(lake_name){
     res
   }
   }
-
-#' map_lake_wiki
-#' @param res data.frame output of get_lake_wiki
-#' @param ... arguments passed to maps::map
-#' @importFrom maps map
-#' @importFrom sp coordinates
-#' @importFrom graphics points
-#' @examples \dontrun{
-#' map_lake_wiki(get_lake_wiki("Corey Lake"), "usa")
-#'
-#' map_lake_wiki(get_lake_wiki("Lake Nipigon"), regions = "Canada")
-#' }
-map_lake_wiki <- function(res, ...){
-
-  coords <- as.numeric(strsplit(res[which(res[,1] == "Coordinates"), 2],
-                                ",")[[1]])
-  res <- data.frame(matrix(rev(coords), ncol = 2))
-  sp::coordinates(res) <- ~X1 + X2
-
-  maps::map(...)
-  points(res, col = "red", cex = 1.5, pch = 19)
-}
