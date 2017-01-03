@@ -9,15 +9,19 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r }
+library(wikilake)
+```
+
 ## Generate list of Michigan Lakes
 
 ### Get Wikipedia URL of Category
-```{r category url}
+```{r category url, eval = FALSE}
 res <- WikipediR::page_info("en", "wikipedia", page = "Category:Lakes of Michigan")
 ```
 
 ### Scrape lake names
-```{r scrape names}
+```{r scrape names, eval = FALSE}
 res <- xml2::read_html(res$query$pages[[1]]$canonicalurl)
 res <- rvest::html_nodes(res, "#mw-pages .mw-category")
 res <- rvest::html_nodes(res, "li")
@@ -26,7 +30,7 @@ res <- rvest::html_attr(res, "title")
 ```
 
 ### Remove junk names
-```{r remove junk names}
+```{r remove junk names, eval = FALSE}
 res <- res[!(1:length(res) %in% grep("List", res))]
 res <- res[!(1:length(res) %in% grep("Watershed", res))]
 res <- res[!(1:length(res) %in% grep("lakes", res))]
@@ -34,7 +38,7 @@ res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
 ```
 
 ### Scape tables
-```{r scrape tables, cache=TRUE}
+```{r scrape tables, eval = FALSE}
 res <- lapply(res, wikilake::lake_wiki)
 
 # remove lakes with missing metadata
@@ -46,7 +50,7 @@ res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
 
 ### Collapse list to `data.frame`
 
-```{r collapse list to data.frame}
+```{r collapse list to data.frame, eval = FALSE}
 res_df_names <- unique(unlist(lapply(res, names)))
 res_df <- data.frame(matrix(NA, nrow = length(res), ncol = length(res_df_names)))
 names(res_df) <- res_df_names
@@ -61,13 +65,31 @@ for(i in 1:length(res)){
 
 ```
 
+```{r echo=FALSE, eval=FALSE}
+good_cols <- data.frame(as.numeric(as.character(apply(milakes,
+                                            2, function(x) sum(!is.na(x))))))
+good_cols <- cbind(good_cols, names(milakes))
+good_cols[order(good_cols[,1], decreasing = TRUE),]
+# hist(good_cols[,1])
+good_cols <- good_cols[good_cols[,1] > 20 ,2]
+good_cols <- as.character(good_cols)
+
+milakes <- res_df[,good_cols]
+devtools::use_data(milakes)
+```
+
+```{r echo = FALSE}
+data(milakes)
+res_df <- milakes
+```
+
 ### Map lakes
 
-```{r map lakes}
+```{r map lakes, fig.height=6,fig.align="center"}
 library(sp)
-library(maps)
+
 coordinates(res_df) <- ~Lon + Lat
-map("state", region = "michigan")
+map("state", region = "michigan", mar = c(0,0,0,0))
 points(res_df, col = "red", pch = 19)
 ```
 
