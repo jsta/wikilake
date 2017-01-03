@@ -34,7 +34,7 @@ res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
 ```
 
 ### Scape tables
-```{r scrape tables}
+```{r scrape tables, cache=TRUE}
 res <- lapply(res, wikilake::lake_wiki)
 
 # remove lakes with missing metadata
@@ -65,9 +65,17 @@ for(i in 1:length(res)){
 
 ```{r map lakes}
 library(sp)
+library(maps)
 coordinates(res_df) <- ~Lon + Lat
 map("state", region = "michigan")
 points(res_df, col = "red", pch = 19)
 ```
+
+
+```{r lake depth distribution, eval=FALSE, echo=FALSE}
+hist(log(as.numeric(res_df$`Max. depth`)))
+```
+
+
 
 
