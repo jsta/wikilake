@@ -39,6 +39,8 @@ tidy_lake_df <- function(lake){
 
   missing_meters <- which(!(1:length(depths) %in% has_meters))
 
+  res[,depth_col_pos] <- depths
+
   res
 }
 
