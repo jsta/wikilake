@@ -9,9 +9,9 @@ Imports:
       rvest,
       WikipediR,
       xml2,
-      maps,
       sp,
       graphics
+Depends: maps
 URL: https://github.com/jsta/wikilake
 BugReports: https://github.com/jsta/wikilake/issues
 Depends:

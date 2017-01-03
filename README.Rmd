@@ -1,0 +1,40 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "images/"
+)
+```
+
+# wikilake
+
+The `wikilake` package provides functions to scrape the metadata tables from lake pages on Wikipedia.
+
+## Installation
+
+`devtools::install_github("jsta/wikilake")`
+
+## Usage
+
+```{r example}
+library(wikilake)
+library(maps)
+
+# metadata only
+lake_wiki("Lake Mendota")
+
+# metadata + map
+lake_wiki("Lake Mendota", map = TRUE, "usa")
+
+lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
+```
+
+
