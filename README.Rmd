@@ -31,7 +31,7 @@ library(maps)
 
 ```{r metadata only}
 # metadata only
-lake_wiki("Lake Mendota")
+knitr::kable(lake_wiki("Lake Mendota"))
 ```
 
 ```{r mapping}
@@ -39,7 +39,7 @@ lake_wiki("Lake Mendota")
 lake_wiki("Lake Mendota", map = TRUE, "usa")
 ```
 
-```{r mapping 2}
+```{r mapping2}
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 ```
 

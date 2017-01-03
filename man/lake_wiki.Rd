@@ -18,8 +18,11 @@ lake_wiki
 }
 \examples{
 \dontrun{
+lake_wiki("Lake George (Michigan–Ontario)")
 lake_wiki("Lac La Belle, Michigan")
 lake_wiki("Bankson Lake")
+lake_wiki("Beals Lake")
+lake_wiki("Devils Lake (Michigan)")
 lake_wiki("Lake Michigan")
 lake_wiki("Fletcher Pond")
 lake_wiki("Lake Bella Vista (Michigan)")

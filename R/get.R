@@ -4,8 +4,11 @@
 #' @param ... arguments passed to maps::map
 #' @export
 #' @examples \dontrun{
+#' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lac La Belle, Michigan")
 #' lake_wiki("Bankson Lake")
+#' lake_wiki("Beals Lake")
+#' lake_wiki("Devils Lake (Michigan)")
 #' lake_wiki("Lake Michigan")
 #' lake_wiki("Fletcher Pond")
 #' lake_wiki("Lake Bella Vista (Michigan)")
@@ -26,6 +29,10 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
 
   if(map){
     map_lake_wiki(res, ...)
+  }
+
+  if(!is.null(res)){
+    res <- tidy_lake_df(res)
   }
 
   res
@@ -90,10 +97,12 @@ get_lake_wiki <- function(lake_name){
       coords <- coords[!(1:length(coords) %in%
                            c(which(nchar(coords) == 0),
                              grep("W", coords),
-                             grep("N", coords))
-      )][1:2]
+                             grep("N", coords)))][1:2]
 
-      coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
+      coords <- paste( as.numeric(
+          sapply(gsub(";", "", coords),
+             function(x) substring(x, 1, nchar(x) - 1))),
+          collapse = ",")
     }else{
       is_west <- length(grep("W", coords)) > 0
       coords <- strsplit(coords, ", ")[[1]]
