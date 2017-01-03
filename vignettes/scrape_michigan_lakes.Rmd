@@ -1,0 +1,73 @@
+---
+title: "Scrape Michigan Lakes"
+author: "Joseph Stachelek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Scrape Michigan Lakes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Generate list of Michigan Lakes
+
+### Get Wikipedia URL of Category
+```{r category url}
+res <- WikipediR::page_info("en", "wikipedia", page = "Category:Lakes of Michigan")
+```
+
+### Scrape lake names
+```{r scrape names}
+res <- xml2::read_html(res$query$pages[[1]]$canonicalurl)
+res <- rvest::html_nodes(res, "#mw-pages .mw-category")
+res <- rvest::html_nodes(res, "li")
+res <- rvest::html_nodes(res, "a")
+res <- rvest::html_attr(res, "title")
+```
+
+### Remove junk names
+```{r remove junk names}
+res <- res[!(1:length(res) %in% grep("List", res))]
+res <- res[!(1:length(res) %in% grep("Watershed", res))]
+res <- res[!(1:length(res) %in% grep("lakes", res))]
+res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
+```
+
+### Scape tables
+```{r scrape tables}
+res <- lapply(res, wikilake::lake_wiki)
+
+# remove lakes with missing metadata
+res <- res[unlist(lapply(res, function(x) !is.null(x)))]
+
+# remove missing coordinates
+res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
+```
+
+### Collapse list to `data.frame`
+
+```{r collapse list to data.frame}
+res_df_names <- unique(unlist(lapply(res, names)))
+res_df <- data.frame(matrix(NA, nrow = length(res), ncol = length(res_df_names)))
+names(res_df) <- res_df_names
+for(i in 1:length(res)){
+  dt_pad <- data.frame(matrix(NA, nrow = 1,
+              ncol = length(res_df_names) - ncol(res[[i]])))
+  names(dt_pad) <- res_df_names[!(res_df_names %in% names(res[[i]]))]
+  dt <- cbind(res[[i]], dt_pad)
+  dt <- dt[,res_df_names]
+  res_df[i,] <- dt
+}
+
+```
+
+### Map lakes
+
+```{r map lakes}
+library(sp)
+coordinates(res_df) <- ~Lon + Lat
+map("state", region = "michigan")
+points(res_df, col = "red", pch = 19)
+```
+
+
