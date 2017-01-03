@@ -43,4 +43,6 @@ lake_wiki("Lake Mendota", map = TRUE, "usa")
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 ```
 
-
+```{r mapping3}
+lake_wiki("Cass Lake (Michigan)", map = TRUE, "state", region = "Michigan")
+```
