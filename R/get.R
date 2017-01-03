@@ -7,6 +7,7 @@
 #' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
+#' lake_wiki("Lake Antoine")
 #' lake_wiki("Dockery Lake (Michigan)")
 #' lake_wiki("Coldwater Lake")
 #' lake_wiki("Bankson Lake")
@@ -62,7 +63,7 @@ get_lake_wiki <- function(lake_name){
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
                                  as_wikitext = FALSE)
   res <- res$parse$text[[1]]
-  res <- xml2::read_html(res)
+  res <- xml2::read_html(res, encoding = "UTF-8")
 
   # is_redirect <- function(){
   #   length(grep("redirect",
@@ -74,6 +75,9 @@ get_lake_wiki <- function(lake_name){
     res <- rvest::html_nodes(res, "table")
     meta_index <- grep("infobox", rvest::html_attr(res, "class"))
     res <- rvest::html_table(res[meta_index])[[1]]
+    res <- apply(res, 2,
+                        function(x) stri_encode(stri_trans_general(x,
+                                      "Latin-ASCII"), "", "UTF-8"))
   },
   error = function(cond){
     message("'", paste0(lake_name,
@@ -85,13 +89,16 @@ get_lake_wiki <- function(lake_name){
 
   if(any(!is.na(res))){
     # format coordinates ####
-    coords <- res[which(res[,1] == "Coordinates"), 2]
-
-    is_tidy_coords <- function(coords){
-      nchar(coords) < 33
+    has_multiple_rows <- !is.null(nrow(res))
+    if(has_multiple_rows){
+      coords <- res[which(res[,1] == "Coordinates"), 2]
+    }else{
+      coords <- res[2]
     }
 
-    if(!is_tidy_coords(coords)){
+    is_tidy_coords <- nchar(coords) < 33
+
+    if(!is_tidy_coords){
       coords <- strsplit(coords, "\\/")[[1]]
       coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
       coords <- sapply(coords, function(x) strsplit(x, " "))
@@ -125,27 +132,33 @@ get_lake_wiki <- function(lake_name){
       coords <- paste(coords, collapse = ",")
     }
 
-    res[which(res[,1] == "Coordinates"), 2] <- coords
+    if(has_multiple_rows){
+      res[which(res[,1] == "Coordinates"), 2] <- coords
+    }else{
+      res[2] <- coords
+    }
 
     # rm junk rows
-    if(any(res[,1] == "")){
-      res <- res[-which(res[,1] == ""),]
-    }
-    if(any(nchar(res[,1]) > 20)){
-      res <- res[-which(nchar(res[,1]) > 20),]
-    }
-    if(length(grep("well-defined", res[,1])) != 0){
-      res <- res[!(1:nrow(res) %in% grep("well-defined", res[,1])),]
-      message("Shore length is not a well-defined measure.")
-    }
-    if(length(grep("Islands", res[,1])) != 0){
-      res <- res[!(1:nrow(res) %in% grep("Islands", res[,1])),]
-    }
-    if(length(grep("Settlements", res[,1])) != 0){
-      res <- res[!(1:nrow(res) %in% grep("Settlements", res[,1])),]
-    }
-    if(length(grep("Sign", res[,1])) != 0){
-      res <- res[!(1:nrow(res) %in% grep("Sign", res[,1])),]
+    if(has_multiple_rows){
+      if(any(res[,1] == "")){
+        res <- res[-which(res[,1] == ""),]
+      }
+      if(any(nchar(res[,1]) > 20)){
+        res <- res[-which(nchar(res[,1]) > 20),]
+      }
+      if(length(grep("well-defined", res[,1])) != 0){
+        res <- res[!(1:nrow(res) %in% grep("well-defined", res[,1])),]
+        message("Shore length is not a well-defined measure.")
+      }
+      if(length(grep("Islands", res[,1])) != 0){
+        res <- res[!(1:nrow(res) %in% grep("Islands", res[,1])),]
+      }
+      if(length(grep("Settlements", res[,1])) != 0){
+        res <- res[!(1:nrow(res) %in% grep("Settlements", res[,1])),]
+      }
+      if(length(grep("Sign", res[,1])) != 0){
+        res <- res[!(1:nrow(res) %in% grep("Sign", res[,1])),]
+      }
     }
 
     res

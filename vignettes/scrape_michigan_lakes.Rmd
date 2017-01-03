@@ -17,7 +17,8 @@ library(wikilake)
 
 ### Get Wikipedia URL of Category
 ```{r category url, eval = FALSE}
-res <- WikipediR::page_info("en", "wikipedia", page = "Category:Lakes of Michigan")
+res <- WikipediR::page_info("en", "wikipedia",
+        page = "Category:Lakes of Michigan")
 ```
 
 ### Scrape lake names
@@ -39,7 +40,7 @@ res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
 
 ### Scape tables
 ```{r scrape tables, eval = FALSE}
-res <- lapply(res, wikilake::lake_wiki)
+res <- lapply(res, lake_wiki)
 
 # remove lakes with missing metadata
 res <- res[unlist(lapply(res, function(x) !is.null(x)))]
@@ -52,9 +53,10 @@ res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
 
 ```{r collapse list to data.frame, eval = FALSE}
 res_df_names <- unique(unlist(lapply(res, names)))
-res_df <- data.frame(matrix(NA, nrow = length(res), ncol = length(res_df_names)))
+res_df <- data.frame(matrix(NA, nrow = length(res),
+                                ncol = length(res_df_names)))
 names(res_df) <- res_df_names
-for(i in 1:length(res)){
+for(i in seq_len(length(res))){
   dt_pad <- data.frame(matrix(NA, nrow = 1,
               ncol = length(res_df_names) - ncol(res[[i]])))
   names(dt_pad) <- res_df_names[!(res_df_names %in% names(res[[i]]))]
@@ -69,7 +71,7 @@ for(i in 1:length(res)){
 good_cols <- data.frame(as.numeric(as.character(apply(milakes,
                                             2, function(x) sum(!is.na(x))))))
 good_cols <- cbind(good_cols, names(milakes))
-good_cols[order(good_cols[,1], decreasing = TRUE),]
+# good_cols[order(good_cols[,1], decreasing = TRUE),]
 # hist(good_cols[,1])
 good_cols <- good_cols[good_cols[,1] > 20 ,2]
 good_cols <- as.character(good_cols)

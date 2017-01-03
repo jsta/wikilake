@@ -21,6 +21,7 @@ lake_wiki
 lake_wiki("Lake George (Michigan–Ontario)")
 lake_wiki("Lake Michigan", map = TRUE, "usa")
 lake_wiki("Lac La Belle, Michigan")
+lake_wiki("Lake Antoine")
 lake_wiki("Dockery Lake (Michigan)")
 lake_wiki("Coldwater Lake")
 lake_wiki("Bankson Lake")

@@ -1,3 +1,12 @@
+#' Scrape Wikipedia lakes metadata
+#' @name wikilake-package
+#' @aliases wikilake
+#' @importFrom stringi stri_encode stri_trans_general
+#' @docType package
+#' @title Scrape Wikipedia lakes metadata
+#' @author \email{stachel2@msu.edu}
+NULL
+
 #' Michigan Lakes
 #'
 #' Metadata of Michigan lakes scraped from Wikipedia.
@@ -22,3 +31,4 @@
 #' @keywords datasets
 #' @name milakes
 NULL
+
