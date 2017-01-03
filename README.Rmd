@@ -26,7 +26,6 @@ The `wikilake` package provides functions to scrape the metadata tables from lak
 
 ```{r example}
 library(wikilake)
-library(maps)
 ```
 
 ```{r metadata only}
