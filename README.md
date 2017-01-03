@@ -62,3 +62,15 @@ lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
     #> 1 165 m (541 ft) 248 km3 (59.5 cu mi)[2]   1044 km [2]    260 m (850 ft)
     #>     Lat   Lon
     #> 1 49.83 -88.5
+
+``` r
+lake_wiki("Cass Lake (Michigan)", map = TRUE, "state", region = "Michigan")
+#> Retrieving data from: https://en.wikipedia.org/wiki/Cass_Lake_(Michigan)
+```
+
+![](images/mapping3-1.png)
+
+    #>        Name                 Location Basin countries         Surface area
+    #> 1 Cass Lake Oakland County, Michigan   United States 1,280 acres (520 ha)
+    #>      Max. depth   Surface elevation    Lat     Lon
+    #> 1 123 ft (37 m) 928 feet (283 m)[1] 42.606 -83.365
