@@ -5,7 +5,10 @@
 #' @export
 #' @examples \dontrun{
 #' lake_wiki("Lake George (Michigan–Ontario)")
+#' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
+#' lake_wiki("Dockery Lake (Michigan)")
+#' lake_wiki("Coldwater Lake")
 #' lake_wiki("Bankson Lake")
 #' lake_wiki("Fisher Lake (Michigan)")
 #' lake_wiki("Beals Lake")
@@ -85,7 +88,7 @@ get_lake_wiki <- function(lake_name){
     coords <- res[which(res[,1] == "Coordinates"), 2]
 
     is_tidy_coords <- function(coords){
-      nchar(coords) < 23
+      nchar(coords) < 33
     }
 
     if(!is_tidy_coords(coords)){
@@ -102,15 +105,19 @@ get_lake_wiki <- function(lake_name){
 
       coords <- gsub("\\[.\\]", "", coords)
 
-      coords <- paste( as.numeric(
-          sapply(gsub(";", "", coords),
-             function(x) substring(x, 1, nchar(x) - 1))),
-          collapse = ",")
+      if(any(nchar(coords) > 5)){
+        coords <- sapply(gsub(";", "", coords),
+                    function(x) substring(x, 1, nchar(x) - 1))
+        coords <- paste(as.numeric(coords), collapse = ",")
+      }else{
+        coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
+      }
     }else{
       is_west <- length(grep("W", coords)) > 0
       coords <- strsplit(coords, ", ")[[1]]
       coords <- strsplit(coords, "[^0-9]+")
       coords <- lapply(coords, as.numeric)
+      coords <- lapply(coords, function(x) x[1:3])
       coords <- unlist(lapply(coords, dms2dd))
       if(is_west){
         coords[2] <- coords[2] * -1
