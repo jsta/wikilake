@@ -17,7 +17,7 @@ dms2dd <- function(x){
 #' @param lake data.frame output of get_lake_wiki
 #' @importFrom stringr str_extract
 tidy_lake_df <- function(lake){
-  lake <- rbind(c("Name", names(lake)[1]), lake)
+  lake <- rbind(c("Name", colnames(lake)[1]), lake)
   res <- list_to_df(lake)
 
   # tidy coordinates

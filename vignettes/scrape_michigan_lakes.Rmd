@@ -32,10 +32,10 @@ res <- rvest::html_attr(res, "title")
 
 ### Remove junk names
 ```{r remove junk names, eval = FALSE}
-res <- res[!(1:length(res) %in% grep("List", res))]
-res <- res[!(1:length(res) %in% grep("Watershed", res))]
-res <- res[!(1:length(res) %in% grep("lakes", res))]
-res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
+res <- res[!(seq_len(length(res)) %in% grep("List", res))]
+res <- res[!(seq_len(length(res)) %in% grep("Watershed", res))]
+res <- res[!(seq_len(length(res)) %in% grep("lakes", res))]
+res <- res[!(seq_len(length(res)) %in% grep("Mud Lake", res))]
 ```
 
 ### Scape tables
