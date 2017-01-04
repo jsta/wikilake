@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 # wikilake
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
+
 The `wikilake` package provides functions to scrape the metadata tables from lake pages on Wikipedia.
 
 ## Installation
