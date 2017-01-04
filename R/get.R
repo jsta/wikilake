@@ -8,6 +8,7 @@
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
 #' lake_wiki("Lake Antoine")
+#' lake_wiki("Lake Baikal")
 #' lake_wiki("Dockery Lake (Michigan)")
 #' lake_wiki("Coldwater Lake")
 #' lake_wiki("Bankson Lake")
@@ -108,6 +109,8 @@ get_lake_wiki <- function(lake_name){
       coords <- coords[!(1:length(coords) %in%
                            c(which(nchar(coords) == 0),
                              grep("W", coords),
+                             grep("E", coords),
+                             grep("S", coords),
                              grep("N", coords)))][1:2]
 
       coords <- gsub("\\[.\\]", "", coords)
