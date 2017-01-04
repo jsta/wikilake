@@ -23,8 +23,8 @@ library(wikilake)
 # metadata only
 lake_wiki("Lake Mendota")
 #> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
-#>   Name                             Location Primary inflows
-#> 1 Name Dane County, Wisconsin,United States    Yahara River
+#>           Name                             Location Primary inflows
+#> 1 Lake Mendota Dane County, Wisconsin,United States    Yahara River
 #>   Primary outflows      Catchment area Basin countries
 #> 1     Yahara River 562 km2 (217 sq mi)   United States
 #>                           Surface area Max. depth Residence time
@@ -43,8 +43,8 @@ lake_wiki("Lake Baikal", map = TRUE, "world")
 
 ![](images/worldmapping-1.png)
 
-    #>   Name        Location             Lake type
-    #> 1 Name Siberia, Russia Continental rift lake
+    #>          Name        Location             Lake type
+    #> 1 Lake Baikal Siberia, Russia Continental rift lake
     #>                   Primary inflows Primary outflows
     #> 1 Selenge, Barguzin, Upper Angara           Angara
     #>                Catchment area     Basin countries     Max. length
@@ -65,8 +65,8 @@ lake_wiki("Lake Mendota", map = TRUE, "usa")
 
 ![](images/mapping-1.png)
 
-    #>   Name                             Location Primary inflows
-    #> 1 Name Dane County, Wisconsin,United States    Yahara River
+    #>           Name                             Location Primary inflows
+    #> 1 Lake Mendota Dane County, Wisconsin,United States    Yahara River
     #>   Primary outflows      Catchment area Basin countries
     #> 1     Yahara River 562 km2 (217 sq mi)   United States
     #>                           Surface area Max. depth Residence time
@@ -83,8 +83,8 @@ lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 
 ![](images/mapping2-1.png)
 
-    #>   Name Location Primary outflows              Catchment area
-    #> 1 Name  Ontario    Nipigon River 25,400 km2 (9,800 sq mi)[1]
+    #>           Name Location Primary outflows              Catchment area
+    #> 1 Lake Nipigon  Ontario    Nipigon River 25,400 km2 (9,800 sq mi)[1]
     #>   Basin countries            Surface area Average depth Max. depth
     #> 1          Canada 4,848 km2 (1,872 sq mi)          <NA>       <NA>
     #>              Water volume Shore length1 Surface elevation   Lat   Lon
@@ -97,7 +97,7 @@ lake_wiki("Cass Lake (Michigan)", map = TRUE, "state", region = "Michigan")
 
 ![](images/mapping3-1.png)
 
-    #>   Name                 Location Basin countries         Surface area
-    #> 1 Name Oakland County, Michigan   United States 1,280 acres (520 ha)
+    #>        Name                 Location Basin countries         Surface area
+    #> 1 Cass Lake Oakland County, Michigan   United States 1,280 acres (520 ha)
     #>   Max. depth   Surface elevation    Lat     Lon
     #> 1         37 928 feet (283 m)[1] 42.606 -83.365
