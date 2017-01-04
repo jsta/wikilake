@@ -32,11 +32,15 @@ library(wikilake)
 
 ```{r metadata only}
 # metadata only
-knitr::kable(lake_wiki("Lake Mendota"))
+lake_wiki("Lake Mendota")
+```
+
+```{r worldmapping}
+# metadata + map
+lake_wiki("Lake Baikal", map = TRUE, "world")
 ```
 
 ```{r mapping}
-# metadata + map
 lake_wiki("Lake Mendota", map = TRUE, "usa")
 ```
 
