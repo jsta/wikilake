@@ -2,6 +2,7 @@
 #' @name wikilake-package
 #' @aliases wikilake
 #' @importFrom stringi stri_encode stri_trans_general
+#' @import selectr
 #' @docType package
 #' @title Scrape Wikipedia lakes metadata
 #' @author \email{stachel2@msu.edu}
