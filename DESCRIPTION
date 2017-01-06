@@ -12,7 +12,8 @@ Imports:
       xml2,
       sp,
       graphics,
-      stringr
+      stringr,
+      selectr
 URL: https://github.com/jsta/wikilake
 BugReports: https://github.com/jsta/wikilake/issues
 Depends:
