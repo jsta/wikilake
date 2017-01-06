@@ -37,11 +37,11 @@ lake_wiki("Lake Mendota")
 
 ```{r worldmapping}
 # metadata + map
-lake_wiki("Lake Baikal", map = TRUE, "world")
+lake_wiki("Gull Lake (Michigan)", map = TRUE)
 ```
 
 ```{r mapping}
-lake_wiki("Lake Mendota", map = TRUE, "usa")
+lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
 ```
 
 ```{r mapping2}
