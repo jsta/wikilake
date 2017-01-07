@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
 [![Travis-CI Build Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/wikilake)](http://cran.r-project.org/web/packages/wikilake/index.html)
+[![Github Stars](https://img.shields.io/github/stars/jsta/wikilake.svg?style=social&label=Github)](https://github.com/jsta/wikilake)
 
 
 The `wikilake` package provides functions to scrape the metadata tables from lake pages on Wikipedia.
