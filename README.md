@@ -2,7 +2,7 @@
 wikilake
 ========
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake) [![Travis-CI Build Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake)
 
 The `wikilake` package provides functions to scrape the metadata tables from lake pages on Wikipedia.
 
@@ -37,44 +37,32 @@ lake_wiki("Lake Mendota")
 
 ``` r
 # metadata + map
-lake_wiki("Lake Baikal", map = TRUE, "world")
-#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Baikal
+lake_wiki("Gull Lake (Michigan)", map = TRUE)
+#> Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)
 ```
 
 ![](images/worldmapping-1.png)
 
-    #>          Name        Location             Lake type
-    #> 1 Lake Baikal Siberia, Russia Continental rift lake
-    #>                   Primary inflows Primary outflows
-    #> 1 Selenge, Barguzin, Upper Angara           Angara
-    #>                Catchment area     Basin countries     Max. length
-    #> 1 560,000 km2 (216,000 sq mi) Russia and Mongolia 636 km (395 mi)
-    #>      Max. width                 Surface area Average depth Max. depth
-    #> 1 79 km (49 mi) 31,722 km2 (12,248 sq mi)[1]          <NA>       <NA>
-    #>                     Water volume Residence time       Shore length1
-    #> 1 23,615.39 km3 (5,700 cu mi)[1]   330 years[2] 2,100 km (1,300 mi)
-    #>    Surface elevation      Frozen    Type         Criteria
-    #> 1 455.5 m (1,494 ft) January-May Natural vii, viii, ix, x
-    #>            Designated Reference no. State Party Region  Lat Lon
-    #> 1 1996 (22nd session)           754      Russia   Asia 53.5 108
+    #>        Name                                            Location
+    #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
+    #>   Basin countries        Surface area Max. depth   Surface elevation
+    #> 1   United States 2,030 acres (8 km2)         34 879 feet (268 m)[1]
+    #>      Lat     Lon
+    #> 1 42.399 -85.411
 
 ``` r
-lake_wiki("Lake Mendota", map = TRUE, "usa")
-#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
+lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
+#> Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)
 ```
 
 ![](images/mapping-1.png)
 
-    #>           Name                             Location Primary inflows
-    #> 1 Lake Mendota Dane County, Wisconsin,United States    Yahara River
-    #>   Primary outflows      Catchment area Basin countries
-    #> 1     Yahara River 562 km2 (217 sq mi)   United States
-    #>                           Surface area Max. depth Residence time
-    #> 1 9,740 acres (3,940 ha) (39.4 sq. km)         25      4.5 years
-    #>       Shore length1 Surface elevation                              Frozen
-    #> 1 21.6 mi (34.8 km)    259 m (850 ft) December 20 (average freezing date)
-    #>       Lat      Lon
-    #> 1 43.1066 -89.4247
+    #>        Name                                            Location
+    #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
+    #>   Basin countries        Surface area Max. depth   Surface elevation
+    #> 1   United States 2,030 acres (8 km2)         34 879 feet (268 m)[1]
+    #>      Lat     Lon
+    #> 1 42.399 -85.411
 
 ``` r
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
