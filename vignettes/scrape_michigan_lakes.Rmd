@@ -71,13 +71,10 @@ for(i in seq_len(length(res))){
 good_cols <- data.frame(as.numeric(as.character(apply(milakes,
                                             2, function(x) sum(!is.na(x))))))
 good_cols <- cbind(good_cols, names(milakes))
-# good_cols[order(good_cols[,1], decreasing = TRUE),]
-# hist(good_cols[,1])
 good_cols <- good_cols[good_cols[,1] > 20 ,2]
 good_cols <- as.character(good_cols)
 
 milakes <- res_df[,good_cols]
-devtools::use_data(milakes)
 ```
 
 ```{r echo = FALSE}
@@ -99,7 +96,3 @@ points(res_df, col = "red", pch = 19)
 ```{r lake depth distribution, eval=FALSE, echo=FALSE}
 hist(log(as.numeric(res_df$`Max. depth`)))
 ```
-
-
-
-
