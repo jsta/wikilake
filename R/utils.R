@@ -32,8 +32,17 @@ tidy_lake_df <- function(lake){
   depths <- res[,depth_col_pos]
 
   has_meters <- grep("m", depths)
-  depths[has_meters] <- stringr::str_extract(depths[has_meters],
-                                             "(?<=\\().*\\sm")
+  is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
+                     stringr::str_locate(depths[has_meters], "ft")[1]
+
+  if(is_meters_first){
+    depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                               "(?<=).*\\sm")
+  }else{
+    depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                               "(?<=\\().*\\sm")
+    }
+
   depths[has_meters] <- sapply(depths[has_meters], function(x)
                         substring(x, 1, nchar(x) - 2))
 
