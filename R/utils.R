@@ -31,24 +31,27 @@ tidy_lake_df <- function(lake){
   depth_col_pos <- grep("depth", names(res))
   depths <- res[,depth_col_pos]
 
-  has_meters <- grep("m", depths)
-  is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
-                     stringr::str_locate(depths[has_meters], "ft")[1]
+  if(length(depths) > 0){
 
-  if(is_meters_first){
-    depths[has_meters] <- stringr::str_extract(depths[has_meters],
-                                               "(?<=).*\\sm")
-  }else{
-    depths[has_meters] <- stringr::str_extract(depths[has_meters],
-                                               "(?<=\\().*\\sm")
-    }
+    has_meters <- grep("m", depths)
+    is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
+                       stringr::str_locate(depths[has_meters], "ft")[1]
 
-  depths[has_meters] <- sapply(depths[has_meters], function(x)
-                        substring(x, 1, nchar(x) - 2))
+    if(is_meters_first){
+      depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                                 "(?<=).*\\sm")
+    }else{
+      depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                                 "(?<=\\().*\\sm")
+      }
 
-  missing_meters <- which(!(1:length(depths) %in% has_meters))
+    depths[has_meters] <- sapply(depths[has_meters], function(x)
+                          substring(x, 1, nchar(x) - 2))
 
-  res[,depth_col_pos] <- depths
+    missing_meters <- which(!(1:length(depths) %in% has_meters))
+
+    res[,depth_col_pos] <- depths
+  }
 
   res
 }

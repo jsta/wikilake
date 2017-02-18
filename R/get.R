@@ -22,6 +22,7 @@
 #' lake_wiki("Lake Mendota", map = TRUE, "usa")
 #' lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 #' lake_wiki("Trout Lake (Wisconsin)")
+#' lake_wiki("Rutland Water")
 #'
 #' # throws warning on redirects
 #' lake_wiki("Beals Lake")
