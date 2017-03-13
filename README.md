@@ -49,7 +49,7 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE)
 #> Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)
 ```
 
-![](images/worldmapping-1.png)
+![](tools/images/worldmapping-1.png)
 
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
@@ -63,7 +63,7 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
 #> Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)
 ```
 
-![](images/mapping-1.png)
+![](tools/images/mapping-1.png)
 
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
@@ -77,21 +77,23 @@ lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 #> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Nipigon
 ```
 
-![](images/mapping2-1.png)
+![](tools/images/mapping2-1.png)
 
     #>           Name Location Primary outflows              Catchment area
     #> 1 Lake Nipigon  Ontario    Nipigon River 25,400 km2 (9,800 sq mi)[1]
     #>   Basin countries            Surface area Average depth Max. depth
-    #> 1          Canada 4,848 km2 (1,872 sq mi)          <NA>       <NA>
-    #>              Water volume Shore length1 Surface elevation   Lat   Lon
-    #> 1 248 km3 (59.5 cu mi)[2]   1044 km [2]    260 m (850 ft) 49.83 -88.5
+    #> 1          Canada 4,848 km2 (1,872 sq mi)          54.9        165
+    #>                              Water volume        Shore length1
+    #> 1 248 km3 (59 cu mi; 201*10^6 acre·ft)[2] 1,044 km (649 mi)[2]
+    #>   Surface elevation   Lat   Lon
+    #> 1    260 m (850 ft) 49.83 -88.5
 
 ``` r
 lake_wiki("Cass Lake (Michigan)", map = TRUE, "state", region = "Michigan")
 #> Retrieving data from: https://en.wikipedia.org/wiki/Cass_Lake_(Michigan)
 ```
 
-![](images/mapping3-1.png)
+![](tools/images/mapping3-1.png)
 
     #>        Name                 Location Basin countries         Surface area
     #> 1 Cass Lake Oakland County, Michigan   United States 1,280 acres (520 ha)
