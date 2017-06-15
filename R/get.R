@@ -108,7 +108,7 @@ get_lake_wiki <- function(lake_name){
       coords <- paste(unlist(coords), collapse = ",")
       coords <- strsplit(coords, ",")[[1]]
 
-      coords <- coords[!(1:length(coords) %in%
+      coords <- coords[!(seq_len(length(coords)) %in%
                            c(which(nchar(coords) == 0),
                              grep("W", coords),
                              grep("E", coords),
