@@ -1,10 +1,10 @@
 Package: wikilake
-Title: Scrape Lakes Metadata Tables from Wikipedia 
+Title: Scrape Lake Metadata Tables from Wikipedia 
 Version: 0.2
 Authors@R: c(
     person("Joseph", "Stachelek", email = "stachel2@msu.edu", role = c("aut", "cre"))
     )
-Description: Scrape lakes metadata tables from Wikipedia <http://www.wikipedia.org>. 
+Description: Scrape lake metadata tables from Wikipedia <http://www.wikipedia.org>. 
 Imports:
       rvest,
       stringi,
