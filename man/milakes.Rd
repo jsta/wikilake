@@ -24,4 +24,3 @@
 Metadata of Michigan lakes scraped from Wikipedia.
 }
 \keyword{datasets}
-

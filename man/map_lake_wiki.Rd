@@ -21,4 +21,3 @@ map_lake_wiki(get_lake_wiki("Corey Lake"), "usa")
 map_lake_wiki(get_lake_wiki("Lake Nipigon"), regions = "Canada")
 }
 }
-

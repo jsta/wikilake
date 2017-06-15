@@ -17,4 +17,3 @@ get_lake_wiki
 get_lake_wiki("Lake Nipigon")
 }
 }
-

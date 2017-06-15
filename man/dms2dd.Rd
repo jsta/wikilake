@@ -16,4 +16,3 @@ Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal d
 dt <- rbind(c(25,12,53.66),c(-80,32,00.61))
 apply(dt, 1, function(x) dms2dd(x))
 }
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/wikilake-package.R
 \docType{package}
 \name{wikilake-package}
-\alias{wikilake}
 \alias{wikilake-package}
+\alias{wikilake}
 \title{Scrape Wikipedia lakes metadata}
 \description{
 Scrape Wikipedia lakes metadata
@@ -11,4 +11,3 @@ Scrape Wikipedia lakes metadata
 \author{
 \email{stachel2@msu.edu}
 }
-

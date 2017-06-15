@@ -45,4 +45,3 @@ lake_wiki("Beals Lake")
 lake_wiki("Rainbow Lake (Waterford Township, Michigan)")
 }
 }
-

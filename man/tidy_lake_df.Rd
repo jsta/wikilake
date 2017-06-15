@@ -12,4 +12,3 @@ tidy_lake_df(lake)
 \description{
 tidy_lake_df
 }
-
