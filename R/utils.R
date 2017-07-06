@@ -35,7 +35,9 @@ tidy_lake_df <- function(lake){
 
     has_meters <- grep("m", depths)
     is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
-                       stringr::str_locate(depths[has_meters], "ft")[1]
+                       max(stringr::str_locate(depths[has_meters], "ft")[1],
+                           stringr::str_locate(depths[has_meters], "feet")[1],
+                           na.rm = TRUE)
 
     if(is_meters_first){
       depths[has_meters] <- stringr::str_extract(depths[has_meters],
