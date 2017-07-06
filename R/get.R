@@ -4,6 +4,7 @@
 #' @param ... arguments passed to maps::map
 #' @export
 #' @examples \dontrun{
+#' lake_wiki("Lake_Peipsi")
 #' lake_wiki("Flagstaff Lake (Maine)")
 #' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
@@ -64,16 +65,32 @@ get_lake_wiki <- function(lake_name){
   message(paste0("Retrieving data from: ", page_link))
 
   # get content
-  res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
-                                 as_wikitext = FALSE)
-  res <- res$parse$text[[1]]
-  res <- xml2::read_html(res, encoding = "UTF-8")
+  get_content <- function(lake_name){
+    res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
+                                   as_wikitext = FALSE)
+    res <- res$parse$text[[1]]
+    res <- xml2::read_html(res, encoding = "UTF-8")
+    res
+  }
 
-  # is_redirect <- function(){
-  #   length(grep("redirect",
-  #               rvest::html_attr(rvest::html_nodes(res, "div"),
-  #                                "class"))) >  0
-  # }
+  is_redirect <- function(res){
+    length(
+      grep("redirect",
+           rvest::html_attr(rvest::html_nodes(res, "div"), "class"))
+      ) >  0
+  }
+
+  page_redirect <- function(res){
+    rvest::html_attr(rvest::html_nodes(res, "a"), "title")
+  }
+
+  res <- get_content(lake_name)
+
+  if(is_redirect(res)){
+    lake_name <- page_redirect(res)
+    message(paste0("Attempting redirect to '", lake_name, "'"))
+    res <- get_content(lake_name)
+  }
 
   res <- tryCatch({
     res <- rvest::html_nodes(res, "table")
@@ -86,7 +103,7 @@ get_lake_wiki <- function(lake_name){
   error = function(cond){
     message("'", paste0(lake_name,
                         "' is missing a metadata table or
-                        points to a redirect and does not have its own page"))
+                        does not have its own page"))
     return(NA)
   }
   )

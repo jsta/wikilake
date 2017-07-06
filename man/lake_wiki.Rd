@@ -18,6 +18,7 @@ lake_wiki
 }
 \examples{
 \dontrun{
+lake_wiki("Lake_Peipsi")
 lake_wiki("Flagstaff Lake (Maine)")
 lake_wiki("Lake George (Michigan–Ontario)")
 lake_wiki("Lake Michigan", map = TRUE, "usa")
