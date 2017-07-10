@@ -17,7 +17,6 @@ dms2dd <- function(x){
 #' @param lake data.frame output of get_lake_wiki
 #' @importFrom stringr str_extract
 tidy_lake_df <- function(lake){
-  # browser()
   lake <- rbind(c("Name", colnames(lake)[1]), lake)
   res <- list_to_df(lake)
 
@@ -26,7 +25,7 @@ tidy_lake_df <- function(lake){
   lon <- as.numeric(strsplit(res$Coordinates, ",")[[1]][2])
   res$Lat <- lat
   res$Lon <- lon
-  res <- res[,which(names(res) != "Coordinates")]
+  res <- res[,!(names(res) %in% c("Coordinates", "- coordinates"))]
 
   # tidy depths
   depth_col_pos <- grep("depth", names(res))

@@ -6,7 +6,7 @@
 #' @examples \dontrun{
 #' lake_wiki("Lake Peipsi")
 #' lake_wiki("Flagstaff Lake (Maine)")
-#' lake_wiki("Lake George (Michigan–Ontario)")
+#' lake_wiki("Lake George (Michigan-Ontario)")
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
 #' lake_wiki("Lake Antoine")
@@ -81,7 +81,7 @@ get_lake_wiki <- function(lake_name, cond = NA){
   }
 
   page_redirect <- function(res){
-    rvest::html_attr(rvest::html_nodes(res, "a"), "title")
+    rvest::html_attr(rvest::html_nodes(res, "a"), "title")[1]
   }
 
   res <- get_content(lake_name)
@@ -114,8 +114,14 @@ get_lake_wiki <- function(lake_name, cond = NA){
     if(length(meta_index) == 0) meta_index <- 1
 
     res <- rvest::html_table(res[meta_index])[[1]]
+
+    # create missing names
     # rm rows that are just repeating the lake name
+    if(all(nchar(names(res)) <  3)){
+      names(res) <- res[1,]
+    }
     res <- res[!apply(res, 1, function(x) all(x == names(res)[1])),]
+
     res <- suppressWarnings(apply(res, 2,
                         function(x) stri_encode(stri_trans_general(x,
                                       "Latin-ASCII"), "", "UTF-8")))
