@@ -9,7 +9,7 @@
 #' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
-#' lake_wiki("Lake Antoine")
+#' lake_wiki("Lake Antoine")*
 #' lake_wiki("Lake Baikal")
 #' lake_wiki("Dockery Lake (Michigan)")
 #' lake_wiki("Coldwater Lake")
@@ -92,13 +92,33 @@ get_lake_wiki <- function(lake_name){
     res <- get_content(lake_name)
   }
 
-  res <- tryCatch({
-    res <- rvest::html_nodes(res, "table")
-    meta_index <- grep("infobox", rvest::html_attr(res, "class"))
+  is_not_lake_page <- function(res, meta_index){
+    no_meta_index <- length(meta_index) == 0
+    if(no_meta_index) meta_index <- 1
     res <- rvest::html_table(res[meta_index])[[1]]
-    res <- apply(res, 2,
+
+    no_meta_index & !any(suppressWarnings(stringr::str_detect(unlist(res), c("lake",
+                                          "tributaries",
+                                          "outflow",
+                                          "elevation",
+                                          "coordinates"))))
+  }
+
+
+  res <- tryCatch({
+
+    res <- rvest::html_nodes(res, "table")
+    meta_index <- grep("infobox vcard", rvest::html_attr(res, "class"))
+
+    if(is_not_lake_page(res, meta_index)) stop(cond)
+
+    if(length(meta_index) == 0) meta_index <- 1
+
+    res <- rvest::html_table(res[meta_index])[[1]]
+
+    res <- suppressWarnings(apply(res, 2,
                         function(x) stri_encode(stri_trans_general(x,
-                                      "Latin-ASCII"), "", "UTF-8"))
+                                      "Latin-ASCII"), "", "UTF-8")))
   },
   error = function(cond){
     message("'", paste0(lake_name,
