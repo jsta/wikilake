@@ -2,7 +2,7 @@
 wikilake
 ========
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake) [![Travis-CI Build Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/wikilake)](http://cran.r-project.org/web/packages/wikilake/index.html) [![Github Stars](https://img.shields.io/github/stars/jsta/wikilake.svg?style=social&label=Github)](https://github.com/jsta/wikilake)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake) [![Travis-CI Build Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/wikilake)](http://cran.r-project.org/web/packages/wikilake/index.html)
 
 The `wikilake` package provides functions to scrape the metadata tables from lake pages on Wikipedia.
 
@@ -53,10 +53,10 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE)
 
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
-    #>   Basin countries        Surface area Max. depth   Surface elevation
-    #> 1   United States 2,030 acres (8 km2)         34 879 feet (268 m)[1]
-    #>      Lat     Lon
-    #> 1 42.399 -85.411
+    #>   Primary outflows Basin countries        Surface area Max. depth
+    #> 1   Gull Creek [1]   United States 2,030 acres (8 km2)         34
+    #>     Surface elevation    Lat     Lon
+    #> 1 879 feet (268 m)[2] 42.399 -85.411
 
 ``` r
 lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
@@ -67,10 +67,10 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
 
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
-    #>   Basin countries        Surface area Max. depth   Surface elevation
-    #> 1   United States 2,030 acres (8 km2)         34 879 feet (268 m)[1]
-    #>      Lat     Lon
-    #> 1 42.399 -85.411
+    #>   Primary outflows Basin countries        Surface area Max. depth
+    #> 1   Gull Creek [1]   United States 2,030 acres (8 km2)         34
+    #>     Surface elevation    Lat     Lon
+    #> 1 879 feet (268 m)[2] 42.399 -85.411
 
 ``` r
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
