@@ -9,7 +9,7 @@
 #' lake_wiki("Lake George (Michigan–Ontario)")
 #' lake_wiki("Lake Michigan", map = TRUE, "usa")
 #' lake_wiki("Lac La Belle, Michigan")
-#' lake_wiki("Lake Antoine")*
+#' lake_wiki("Lake Antoine")
 #' lake_wiki("Lake Baikal")
 #' lake_wiki("Dockery Lake (Michigan)")
 #' lake_wiki("Coldwater Lake")
@@ -54,17 +54,17 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
 #' @import rvest
 #' @importFrom xml2 read_html
 #' @param lake_name character
+#' @param cond character stopping condition
 #' @examples \dontrun{
 #' get_lake_wiki("Lake Nipigon")
 #' }
-get_lake_wiki <- function(lake_name){
+get_lake_wiki <- function(lake_name, cond = NA){
   # display page link
   page_metadata <- page_info("en","wikipedia", page = lake_name)$query$pages
 
   page_link <- page_metadata[[1]][["fullurl"]]
   message(paste0("Retrieving data from: ", page_link))
 
-  # get content
   get_content <- function(lake_name){
     res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
                                    as_wikitext = FALSE)
@@ -104,7 +104,6 @@ get_lake_wiki <- function(lake_name){
                                           "coordinates"))))
   }
 
-
   res <- tryCatch({
 
     res <- rvest::html_nodes(res, "table")
@@ -115,7 +114,8 @@ get_lake_wiki <- function(lake_name){
     if(length(meta_index) == 0) meta_index <- 1
 
     res <- rvest::html_table(res[meta_index])[[1]]
-
+    # rm rows that are just repeating the lake name
+    res <- res[!apply(res, 1, function(x) all(x == names(res)[1])),]
     res <- suppressWarnings(apply(res, 2,
                         function(x) stri_encode(stri_trans_general(x,
                                       "Latin-ASCII"), "", "UTF-8")))
