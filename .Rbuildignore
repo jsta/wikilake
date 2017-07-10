@@ -5,3 +5,4 @@
 ^images$
 ^data-raw$
 ^\.travis\.yml$
+^cran-comments\.md$
