@@ -7,7 +7,7 @@
 dms2dd(x)
 }
 \arguments{
-\item{x}{numeric vector of length 3 corresonding to degrees, minutes, and seconds}
+\item{x}{numeric vector of length 3 corresponding to degrees, minutes, and seconds}
 }
 \description{
 Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees
