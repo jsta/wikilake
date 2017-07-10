@@ -6,3 +6,4 @@
 ^data-raw$
 ^\.travis\.yml$
 ^cran-comments\.md$
+^docs$
