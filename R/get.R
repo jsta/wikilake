@@ -113,7 +113,7 @@ get_lake_wiki <- function(lake_name, cond = NA){
 
     if(length(meta_index) == 0) meta_index <- 1
 
-    res <- rvest::html_table(res[meta_index])[[1]]
+    res <- rvest::html_table(res[max(meta_index)])[[1]]
 
     # create missing names
     # rm rows that are just repeating the lake name
