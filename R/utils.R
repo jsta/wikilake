@@ -20,40 +20,10 @@ tidy_lake_df <- function(lake){
   lake <- rbind(c("Name", colnames(lake)[1]), lake)
   res  <- list_to_df(lake)
 
-  # tidy coordinates
-  lat <- as.numeric(strsplit(res$Coordinates, ",")[[1]][1])
-  lon <- as.numeric(strsplit(res$Coordinates, ",")[[1]][2])
-  res$Lat <- lat
-  res$Lon <- lon
-  res <- res[,!(names(res) %in% c("Coordinates", "- coordinates"))]
-
-  # tidy depths
-  depth_col_pos <- grep("depth", names(res))
-  depths <- res[,depth_col_pos]
-
-  if(length(depths) > 0){
-
-    has_meters <- grep("m", depths)
-    is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
-                       max(stringr::str_locate(depths[has_meters], "ft")[1],
-                           stringr::str_locate(depths[has_meters], "feet")[1],
-                           na.rm = TRUE)
-
-    if(is_meters_first){
-      depths[has_meters] <- stringr::str_extract(depths[has_meters],
-                                                 "(?<=).*\\sm")
-    }else{
-      depths[has_meters] <- stringr::str_extract(depths[has_meters],
-                                                 "(?<=\\().*\\sm")
-      }
-
-    depths[has_meters] <- sapply(depths[has_meters], function(x)
-                          substring(x, 1, nchar(x) - 2))
-
-    missing_meters <- which(!(1:length(depths) %in% has_meters))
-
-    res[,depth_col_pos] <- depths
-  }
+  res <- tidy_coordinates(res)
+  res <- tidy_depths(res)
+  # res <- tidy_units(res)
+  res <- rm_line_breaks(res)
 
   res
 }
@@ -95,4 +65,59 @@ is_not_lake_page <- function(res, meta_index){
                                                               "outflow",
                                                               "elevation",
                                                               "coordinates"))))
+}
+
+tidy_coordinates <- function(res){
+  lat <- as.numeric(strsplit(res$Coordinates, ",")[[1]][1])
+  lon <- as.numeric(strsplit(res$Coordinates, ",")[[1]][2])
+  res$Lat <- lat
+  res$Lon <- lon
+  res[,!(names(res) %in% c("Coordinates", "- coordinates"))]
+}
+
+tidy_depths <- function(res){
+  depth_col_pos <- grep("depth", names(res))
+  depths <- res[,depth_col_pos]
+
+  if(length(depths) > 0){
+    has_meters <- grep("m", depths)
+    is_meters_first <- stringr::str_locate(depths[has_meters], "m")[1] <
+      max(stringr::str_locate(depths[has_meters], "ft")[1],
+          stringr::str_locate(depths[has_meters], "feet")[1],
+          na.rm = TRUE)
+
+    if(is_meters_first){
+      depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                                 "(?<=).*\\sm")
+    }else{
+      depths[has_meters] <- stringr::str_extract(depths[has_meters],
+                                                 "(?<=\\().*\\sm")
+    }
+
+    depths[has_meters] <- sapply(depths[has_meters], function(x)
+      substring(x, 1, nchar(x) - 2))
+
+    missing_meters <- which(!(1:length(depths) %in% has_meters))
+
+    res[,depth_col_pos] <- depths
+  }
+
+  res
+}
+
+drop_trailing_line_break <- function(x){
+  # x <- "asdf\nlp\noi"
+  first_break <- stringr::str_locate(pattern = "\n", x)[1]
+  if(substring(x, first_break - 1, first_break - 1) == ","){
+    first_break <- first_break - 1
+  }
+
+  substring(x, 1, (first_break - 1))
+}
+
+rm_line_breaks <- function(res){
+  bad_cols       <- as.logical(apply(res, 2, function(x) length(grep("\n", x) > 0)))
+  res[,bad_cols] <- sapply(res[,bad_cols], drop_trailing_line_break)
+
+  res
 }
