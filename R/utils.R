@@ -18,7 +18,7 @@ dms2dd <- function(x){
 #' @importFrom stringr str_extract
 tidy_lake_df <- function(lake){
   lake <- rbind(c("Name", colnames(lake)[1]), lake)
-  res <- list_to_df(lake)
+  res  <- list_to_df(lake)
 
   # tidy coordinates
   lat <- as.numeric(strsplit(res$Coordinates, ",")[[1]][1])
@@ -63,4 +63,36 @@ list_to_df <- function(ll){
   df <- as.data.frame(t(ll[,-1]), stringsAsFactors = FALSE)
   colnames(df) <- df_names
   df
+}
+
+get_content <- function(lake_name){
+  res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
+                                 as_wikitext = FALSE)
+  res <- res$parse$text[[1]]
+  res <- xml2::read_html(res, encoding = "UTF-8")
+  res
+}
+
+is_redirect <- function(res){
+  length(
+    grep("redirect",
+         rvest::html_attr(rvest::html_nodes(res, "div"), "class"))
+  ) >  0
+}
+
+page_redirect <- function(res){
+  rvest::html_attr(rvest::html_nodes(res, "a"), "title")[1]
+}
+
+is_not_lake_page <- function(res, meta_index){
+  no_meta_index <- length(meta_index) == 0
+  if(no_meta_index) meta_index <- 1
+  res <- rvest::html_table(res[meta_index])[[1]]
+
+  no_meta_index & !any(suppressWarnings(stringr::str_detect(unlist(res),
+                                                            c("lake",
+                                                              "tributaries",
+                                                              "outflow",
+                                                              "elevation",
+                                                              "coordinates"))))
 }

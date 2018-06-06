@@ -65,25 +65,6 @@ get_lake_wiki <- function(lake_name, cond = NA){
   page_link <- page_metadata[[1]][["fullurl"]]
   message(paste0("Retrieving data from: ", page_link))
 
-  get_content <- function(lake_name){
-    res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
-                                   as_wikitext = FALSE)
-    res <- res$parse$text[[1]]
-    res <- xml2::read_html(res, encoding = "UTF-8")
-    res
-  }
-
-  is_redirect <- function(res){
-    length(
-      grep("redirect",
-           rvest::html_attr(rvest::html_nodes(res, "div"), "class"))
-      ) >  0
-  }
-
-  page_redirect <- function(res){
-    rvest::html_attr(rvest::html_nodes(res, "a"), "title")[1]
-  }
-
   res <- get_content(lake_name)
 
   if(is_redirect(res)){
@@ -92,27 +73,13 @@ get_lake_wiki <- function(lake_name, cond = NA){
     res <- get_content(lake_name)
   }
 
-  is_not_lake_page <- function(res, meta_index){
-    no_meta_index <- length(meta_index) == 0
-    if(no_meta_index) meta_index <- 1
-    res <- rvest::html_table(res[meta_index])[[1]]
-
-    no_meta_index & !any(suppressWarnings(stringr::str_detect(unlist(res), c("lake",
-                                          "tributaries",
-                                          "outflow",
-                                          "elevation",
-                                          "coordinates"))))
-  }
-
   res <- tryCatch({
-
-    res <- rvest::html_nodes(res, "table")
+    res        <- rvest::html_nodes(res, "table")
     meta_index <- grep("infobox vcard", rvest::html_attr(res, "class"))
 
     if(is_not_lake_page(res, meta_index)) stop(cond)
 
     if(length(meta_index) == 0) meta_index <- 1
-
     res <- rvest::html_table(res[max(meta_index)])[[1]]
 
     # create missing names
