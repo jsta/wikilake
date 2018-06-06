@@ -1,0 +1,34 @@
+---
+title: "Compare wikilake output with python wptools"
+author: "Joseph Stachelek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compare wikilake output with python wptools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r echo=FALSE}
+library(reticulate)
+use_condaenv("base")
+```
+
+```{r eval=FALSE}
+library(reticulate) # Use python 3
+py_install("wptools")
+```
+
+```{r }
+wptools <- import("wptools")
+page <- wptools$page("Lake Peipsi")
+res <- page$get_parse()$data["infobox"]
+knitr::kable(tidyr::gather(purrr::flatten_df(res)))
+```
