@@ -18,3 +18,11 @@ test_that("simple redirects work", {
 
   expect_false(is.na(lake_wiki("Lake George (Michigan-Ontario)")$Name))
 })
+
+# test_that("lake_wiki fails well", {
+#   skip_on_cran()
+#   skip_on_travis()
+#
+#   expect_error(lake_wiki("Lake Bamboozle"), NA)
+#
+# })
