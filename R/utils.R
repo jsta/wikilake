@@ -22,8 +22,8 @@ tidy_lake_df <- function(lake){
 
   res <- tidy_coordinates(res)
   res <- tidy_depths(res)
-  # res <- tidy_units(res)
   res <- rm_line_breaks(res)
+  res <- tidy_units(res)
 
   res
 }
@@ -94,10 +94,10 @@ tidy_depths <- function(res){
                                                  "(?<=\\().*\\sm")
     }
 
-    depths[has_meters] <- sapply(depths[has_meters], function(x)
-      substring(x, 1, nchar(x) - 2))
+    # depths[has_meters] <- sapply(depths[has_meters], function(x)
+    #   substring(x, 1, nchar(x) - 2))
 
-    missing_meters <- which(!(1:length(depths) %in% has_meters))
+    # missing_meters <- which(!(1:length(depths) %in% has_meters))
 
     res[,depth_col_pos] <- depths
   }

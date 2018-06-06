@@ -2,6 +2,8 @@
 #' @name wikilake-package
 #' @aliases wikilake
 #' @importFrom stringi stri_encode stri_trans_general
+#' @importFrom utils read.csv
+#' @importFrom units set_units as_units
 #' @import selectr
 #' @docType package
 #' @title Scrape Wikipedia lakes metadata

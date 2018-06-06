@@ -13,7 +13,8 @@ Imports:
       sp,
       graphics,
       stringr,
-      selectr
+      selectr,
+      units
 URL: https://github.com/jsta/wikilake
 BugReports: https://github.com/jsta/wikilake/issues
 Depends:
