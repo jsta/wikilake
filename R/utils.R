@@ -121,3 +121,71 @@ rm_line_breaks <- function(res){
 
   res
 }
+
+# 0 = no choice, 1 = first choice, 2 = second choice
+# pull_units(res$`Surface area`, 2)
+# pull_units(res$`Water volume`, 0)
+# pull_units(res$`Water volume`, 1)
+# pull_units(res$`Water volume`, 2)
+# pull_units(res$`Average depth`, 0)
+# pull_units(res$`Max. length`, 0)
+# pull_units(res$`Residence time`, 0)
+# pull_units(res$`Residence time`, 1)
+# pull_units(res$`Residence time`, 2)
+
+pull_units <- function(x, position){
+
+  x <- gsub("\\[\\d+\\]", "", x) # remove reference designations
+  if(length(grep("\\d", x)) == 0){
+    position <- 3 # non-numeric result
+  }
+  if(nchar(x) > 0){
+    x <- stringr::str_replace_all(x, "^[^\\d]+", "") # remove preappended qualifier text
+  }
+
+  if(position == 0){
+    paren_pos <- stringr::str_locate_all(x, "\\(")[[1]][,1]
+    if(length(paren_pos) == 0) paren_pos <- nchar(x) + 2
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, space_pos[1] + 1, paren_pos[1] - 2)
+  }
+  if(position == 1){
+    paren_pos <- stringr::str_locate_all(x, "\\(")[[1]][,1]
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, space_pos[1] + 1, paren_pos[1] - 2)
+  }
+  if(position == 2){
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, space_pos[length(space_pos)]+1, nchar(x) - 1)
+  }
+  x
+}
+
+# 0 = no choice, 1 = first choice, 2 = second choice
+# pull_position(res$`Surface area`, 2)
+# pull_position(res$`Water volume`, 0)
+# pull_position(res$`Water volume`, 1)
+# pull_position(res$`Water volume`, 2)
+pull_position <- function(x, position){
+
+  x <- gsub("\\[\\d+\\]", "", x) # remove reference designations
+  x <- stringr::str_replace_all(x, "^[^\\d]+", "") # remove preappended qualifier text
+
+  if(position == 0){
+    paren_pos <- stringr::str_locate_all(x, "\\(")[[1]][,1]
+    if(length(paren_pos) == 0) paren_pos <- nchar(x) + 2
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, 1, paren_pos[1] - 2)
+  }
+  if(position == 1){
+    paren_pos <- stringr::str_locate_all(x, "\\(")[[1]][,1]
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, 1, paren_pos[1] - 2)
+  }
+
+  if(position == 2){
+    space_pos <- stringr::str_locate_all(x, " ")[[1]][,1]
+    x <- substring(x, space_pos[length(space_pos) - 1] + 2, nchar(x) - 1)
+  }
+  x
+}
