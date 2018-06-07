@@ -1,3 +1,7 @@
+# wikilake 0.4
+
+* Improved handling and standardization of measurement units
+
 # wikilake 0.3
 
 * Added ability to follow simple redirects
