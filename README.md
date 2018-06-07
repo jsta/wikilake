@@ -37,10 +37,31 @@ lake_wiki("Lake Mendota")
 #>   Primary outflows Catchment area Basin countries Surface area Max. depth
 #> 1     Yahara River       562 km^2   United States   9740 acres       25 m
 #>   Residence time Shore length1 Surface elevation
-#> 1      4.5 years       21.6 mi             259 m
+#> 1      4.5 years       34.8 km             259 m
 #>                                Frozen     Lat      Lon
 #> 1 December 20 (average freezing date) 43.1066 -89.4247
+
+# pretty printing metadata
+knitr::kable(tidyr::gather(lake_wiki("Lake Mendota")))
+#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
 ```
+
+| key               | value                                |
+|:------------------|:-------------------------------------|
+| Name              | Lake Mendota                         |
+| Location          | Dane County, Wisconsin,United States |
+| Primary inflows   | Yahara River                         |
+| Primary outflows  | Yahara River                         |
+| Catchment area    | 562                                  |
+| Basin countries   | United States                        |
+| Surface area      | 9740                                 |
+| Max. depth        | 25                                   |
+| Residence time    | 4.5                                  |
+| Shore length1     | 34.8                                 |
+| Surface elevation | 259                                  |
+| Frozen            | December 20 (average freezing date)  |
+| Lat               | 43.1066                              |
+| Lon               | -89.4247                             |
 
 ``` r
 # metadata + map
@@ -53,9 +74,9 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE)
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
     #>   Primary outflows Basin countries Surface area Max. depth
-    #> 1   Gull Creek [1]   United States   2030 acres       34 m
+    #> 1   Gull Creek [1]   United States       8 km^2       34 m
     #>   Surface elevation    Lat     Lon
-    #> 1          879 feet 42.399 -85.411
+    #> 1             268 m 42.399 -85.411
 
 ``` r
 lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
@@ -67,9 +88,9 @@ lake_wiki("Gull Lake (Michigan)", map = TRUE, "usa")
     #>        Name                                            Location
     #> 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States
     #>   Primary outflows Basin countries Surface area Max. depth
-    #> 1   Gull Creek [1]   United States   2030 acres       34 m
+    #> 1   Gull Creek [1]   United States       8 km^2       34 m
     #>   Surface elevation    Lat     Lon
-    #> 1          879 feet 42.399 -85.411
+    #> 1             268 m 42.399 -85.411
 
 ``` r
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
@@ -95,4 +116,4 @@ lake_wiki("Cass Lake (Michigan)", map = TRUE, "state", region = "Michigan")
     #>        Name                 Location Basin countries Surface area
     #> 1 Cass Lake Oakland County, Michigan   United States   1280 acres
     #>   Max. depth Surface elevation    Lat     Lon
-    #> 1       37 m          928 feet 42.606 -83.365
+    #> 1       37 m             283 m 42.606 -83.365

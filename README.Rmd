@@ -35,9 +35,12 @@ The `wikilake` package provides functions to scrape the metadata tables from lak
 library(wikilake)
 ```
 
-```{r metadata only}
+```{r metadata only, warning=FALSE}
 # metadata only
 lake_wiki("Lake Mendota")
+
+# pretty printing metadata
+knitr::kable(tidyr::gather(lake_wiki("Lake Mendota")))
 ```
 
 ```{r worldmapping}
