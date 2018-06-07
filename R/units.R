@@ -28,7 +28,7 @@ unit_key_ <- function(){
     Average depth, n, m\n
     Max. depth, n, m\n
     Water volume, n, m3\n
-    Residence time, n, NA\n
+    Residence time, n, years\n
     Salinity, n, NA\n
     Shore length1, n, km\n
     Surface elevation, n, m\n
@@ -50,7 +50,7 @@ unit_key_ <- function(){
 tidy_units <- function(res){
   unit_key <- unit_key_()
 
-  known_units <- c("m", "km2", "years", "sq mi", "ha", "m3", "acres", "sq. km")
+  known_units <- c("m", "km2", "years", "sq mi", "ha", "m3", "acres", "sq. km", "days")
 
   numeric_cols <- unit_key$Variable[unit_key$format == "n"]
   numeric_cols <- names(res) %in% numeric_cols
@@ -73,7 +73,6 @@ tidy_units <- function(res){
 
     # strip converted units
     # in case of a choice prefer default
-    # browser()
     units_df <- data.frame(
       zero_units = sapply(res[,numeric_cols], function(x) pull_units(x, 0)),
       first_units = sapply(res[,numeric_cols], function(x) pull_units(x, 1)),
