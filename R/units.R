@@ -50,7 +50,7 @@ unit_key_ <- function(){
 tidy_units <- function(res){
   unit_key <- unit_key_()
 
-  known_units <- c("m", "km2", "years", "sq mi", "ha", "m3", "acres", "sq. km", "days")
+  known_units <- c("m", "km2", "years", "sq mi", "ha", "m3", "acres", "sq. km", "days", "acre feet")
 
   numeric_cols <- unit_key$Variable[unit_key$format == "n"]
   numeric_cols <- names(res) %in% numeric_cols
@@ -112,7 +112,7 @@ tidy_units <- function(res){
     })
 
     names(quantities) <- numeric_cols
-    quantities <- as.data.frame(quantities)
+    quantities        <- as.data.frame(quantities)
     names(quantities) <- numeric_cols
 
     res[,numeric_cols] <- quantities
