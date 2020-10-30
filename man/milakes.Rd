@@ -4,7 +4,8 @@
 \name{milakes}
 \alias{milakes}
 \title{Michigan Lakes}
-\format{A data frame with 48 columns and 177 rows:
+\format{
+A data frame with 48 columns and 177 rows:
 \itemize{
           \item{Name: }{lake name}
           \item{Location: }{location description}
@@ -19,7 +20,8 @@
           \item{Average depth: }{meters}
           \item{Max. length: }{meters}
           \item{Max. width: }{meters}
-          }}
+          }
+}
 \description{
 Metadata of Michigan lakes scraped from Wikipedia.
 }
