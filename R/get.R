@@ -24,7 +24,10 @@
 #' lake_wiki("Lake Mendota", map = TRUE, "usa")
 #' lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 #' lake_wiki("Trout Lake (Wisconsin)")
-#' lake_wiki("Rutland Water")
+#'
+#' # a vector of lake names
+#' lake_wiki(c("Lake Mendota","Trout Lake (Wisconsin)"))
+#' lake_wiki(c("Lake Mendota","Trout Lake (Wisconsin)"), map = TRUE)
 #'
 #' # throws warning on redirects
 #' lake_wiki("Beals Lake")
@@ -35,14 +38,21 @@
 
 lake_wiki <- function(lake_name, map = FALSE, ...){
 
-  res <- get_lake_wiki(lake_name)
+  .lake_wiki <- function(lake_name, ...){
+    res <- get_lake_wiki(lake_name)
+
+    if(!is.null(res)){
+      res <- tidy_lake_df(res)
+    }
+
+    res
+  }
+
+  res <- lapply(lake_name, function(x) .lake_wiki(x, map = map))
+  res <- dplyr::bind_rows(res)
 
   if(map){
     map_lake_wiki(res, ...)
-  }
-
-  if(!is.null(res)){
-    res <- tidy_lake_df(res)
   }
 
   res

@@ -38,7 +38,10 @@ lake_wiki("Lake Mendota")
 lake_wiki("Lake Mendota", map = TRUE, "usa")
 lake_wiki("Lake Nipigon", map = TRUE, regions = "Canada")
 lake_wiki("Trout Lake (Wisconsin)")
-lake_wiki("Rutland Water")
+
+# a vector of lake names
+lake_wiki(c("Lake Mendota","Trout Lake (Wisconsin)"))
+lake_wiki(c("Lake Mendota","Trout Lake (Wisconsin)"), map = TRUE)
 
 # throws warning on redirects
 lake_wiki("Beals Lake")

@@ -1,6 +1,6 @@
 Package: wikilake
 Title: Scrape Lake Metadata Tables from Wikipedia 
-Version: 0.4
+Version: 0.5
 Authors@R: c(
     person("Joseph", "Stachelek", email = "stachel2@msu.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5924-2464"))
     )
@@ -14,7 +14,8 @@ Imports:
       graphics,
       stringr,
       selectr,
-      units
+      units,
+      dplyr
 URL: https://github.com/jsta/wikilake
 BugReports: https://github.com/jsta/wikilake/issues
 Depends:

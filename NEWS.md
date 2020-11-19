@@ -1,3 +1,7 @@
+# wikilake 0.5
+
+* Add ability to pass a vector of names to lake_wiki (#16)
+
 # wikilake 0.4
 
 * Improved handling and standardization of measurement units

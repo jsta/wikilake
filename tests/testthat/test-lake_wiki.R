@@ -12,6 +12,15 @@ test_that("lake_wiki works", {
 
 })
 
+test_that("lake_wiki works with a vector of names", {
+  skip_on_cran()
+  skip_on_travis()
+
+  expect_false(all(is.na(
+    test <- lake_wiki(c("Lake Mendota","Trout Lake (Wisconsin)"))$`Max. depth`
+    )))
+})
+
 test_that("simple redirects work", {
   skip_on_cran()
   skip_on_travis()
