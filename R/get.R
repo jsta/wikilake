@@ -50,7 +50,7 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
 
   res <- lapply(lake_name, function(x) .lake_wiki(x, map = map))
 
-  res <- dplyr::bind_rows(
+  res <- data.frame(dplyr::bind_rows(
     lapply(res, function(x) {
       tidyr::pivot_wider(
       data.frame(
@@ -58,7 +58,7 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
       values = t(x)),
       names_from = "field", values_from = "values")
     })
-    )
+    ), check.names = FALSE)
 
   if(map){
     map_lake_wiki(res, ...)
