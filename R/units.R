@@ -48,6 +48,7 @@ unit_key_ <- function(){
 }
 
 tidy_units <- function(res){
+  browser()
   unit_key <- unit_key_()
 
   known_units <- c("m", "km2", "years", "sq mi", "ha", "m3", "acres", "sq. km", "days", "acre feet")

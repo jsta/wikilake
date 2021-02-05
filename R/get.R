@@ -40,7 +40,7 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
 
   .lake_wiki <- function(lake_name, ...){
     res <- get_lake_wiki(lake_name)
-
+    browser()
     if(!is.null(res)){
       res <- tidy_lake_df(res)
     }
@@ -113,19 +113,23 @@ get_lake_wiki <- function(lake_name, cond = NA){
 
   if(any(!is.na(res))){
     # format coordinates ####
+    browser()
     has_multiple_rows <- !is.null(nrow(res))
     if(has_multiple_rows){
-      coords <- res[which(res[,1] == "Coordinates"), 2]
+      coords_raw <- res[which(res[,1] == "Coordinates"), 2]
     }else{
       coords <- res[2]
     }
 
-    is_tidy_coords <- nchar(coords) < 33
+    is_tidy_coords <- nchar(coords_raw) < 33
 
     if(!is_tidy_coords){
-      coords <- strsplit(coords, "\\/")[[1]]
-      coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
-      coords <- sapply(coords, function(x) strsplit(x, " "))
+      browser()
+      coords <- strsplit(coords_raw, "\\/")[[1]]
+      coords <- coords[grep("Coordinates", coords)]
+      coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))[[1]]
+      coords <- coords[which.min(nchar(coords))][[1]]
+      coords <- sapply(coords, function(x) strsplit(x, " "))[[1]]
       coords <- paste(unlist(coords), collapse = ",")
       coords <- strsplit(coords, ",")[[1]]
 
@@ -141,7 +145,7 @@ get_lake_wiki <- function(lake_name, cond = NA){
       if(any(nchar(coords) > 5)){
         coords <- sapply(gsub(";", "", coords),
                     function(x) substring(x, 1, nchar(x) - 1))
-        coords <- paste(as.numeric(coords), collapse = ",")
+        coords <- suppressWarnings(paste(as.numeric(coords), collapse = ","))
       }else{
         coords <- paste(as.numeric(gsub(";", "", coords)), collapse = ",")
       }
