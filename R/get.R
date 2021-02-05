@@ -49,6 +49,7 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
   }
 
   res <- lapply(lake_name, function(x) .lake_wiki(x, map = map))
+  res <- res[sapply(res, function(x) !is.null(x))]
 
   res <- data.frame(dplyr::bind_rows(
     lapply(res, function(x) {

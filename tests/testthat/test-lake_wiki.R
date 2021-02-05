@@ -30,6 +30,14 @@ test_that("simple redirects work", {
   expect_false(is.na(lake_wiki("Lake George (Michigan-Ontario)")$Name))
 })
 
+test_that("lake_wiki fails well when there is no infobox", {
+  testthat::expect_s3_class(
+    lake_wiki(c("Elk River Chain of Lakes Watershed", "Lake Mendota")),
+    "data.frame"
+  )
+})
+
+
 # test_that("lake_wiki fails well", {
 #   skip_on_cran()
 #   skip_on_travis()
