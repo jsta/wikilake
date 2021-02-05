@@ -2,6 +2,7 @@
 #' @param lake_name character
 #' @param map logical produce map of lake location?
 #' @param ... arguments passed to maps::map
+#' @importFrom tidyr pivot_wider
 #' @export
 #' @examples \dontrun{
 #' lake_wiki("Lake Peipsi")
@@ -40,7 +41,6 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
 
   .lake_wiki <- function(lake_name, ...){
     res <- get_lake_wiki(lake_name)
-    browser()
     if(!is.null(res)){
       res <- tidy_lake_df(res)
     }
@@ -49,7 +49,16 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
   }
 
   res <- lapply(lake_name, function(x) .lake_wiki(x, map = map))
-  res <- dplyr::bind_rows(res)
+
+  res <- dplyr::bind_rows(
+    lapply(res, function(x) {
+      tidyr::pivot_wider(
+      data.frame(
+      field = names(x),
+      values = t(x)),
+      names_from = "field", values_from = "values")
+    })
+    )
 
   if(map){
     map_lake_wiki(res, ...)
@@ -113,7 +122,6 @@ get_lake_wiki <- function(lake_name, cond = NA){
 
   if(any(!is.na(res))){
     # format coordinates ####
-    browser()
     has_multiple_rows <- !is.null(nrow(res))
     if(has_multiple_rows){
       coords_raw <- res[which(res[,1] == "Coordinates"), 2]
@@ -124,12 +132,12 @@ get_lake_wiki <- function(lake_name, cond = NA){
     is_tidy_coords <- nchar(coords_raw) < 33
 
     if(!is_tidy_coords){
-      browser()
       coords <- strsplit(coords_raw, "\\/")[[1]]
-      coords <- coords[grep("Coordinates", coords)]
-      coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))[[1]]
-      coords <- coords[which.min(nchar(coords))][[1]]
-      coords <- sapply(coords, function(x) strsplit(x, " "))[[1]]
+      coords <- sapply(coords, trimws)
+      coords <- coords[stringr::str_starts(coords, "\\d")]
+
+      coords <- sapply(coords, function(x) strsplit(x, "Coordinates: "))
+      coords <- sapply(coords, function(x) strsplit(x, " "))
       coords <- paste(unlist(coords), collapse = ",")
       coords <- strsplit(coords, ",")[[1]]
 

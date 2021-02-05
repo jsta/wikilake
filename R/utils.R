@@ -20,7 +20,6 @@ tidy_lake_df <- function(lake){
   lake <- rbind(c("Name", colnames(lake)[1]), lake)
   res  <- list_to_df(lake)
 
-  browser()
   res <- tidy_coordinates(res)
   res <- tidy_depths(res)
   res <- rm_line_breaks(res)
@@ -69,7 +68,6 @@ is_not_lake_page <- function(res, meta_index){
 }
 
 tidy_coordinates <- function(res){
-  browser()
   lat <- as.numeric(strsplit(res$Coordinates, ",")[[1]][1])
   lon <- as.numeric(strsplit(res$Coordinates, ",")[[1]][2])
   res$Lat <- lat

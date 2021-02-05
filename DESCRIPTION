@@ -15,7 +15,8 @@ Imports:
       stringr,
       selectr,
       units,
-      dplyr
+      dplyr,
+      tidyr
 URL: https://github.com/jsta/wikilake
 BugReports: https://github.com/jsta/wikilake/issues
 Depends:
