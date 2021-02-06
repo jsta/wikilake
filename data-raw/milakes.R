@@ -24,6 +24,7 @@ res <- lapply(res, lake_wiki)
 res <- res[unlist(lapply(res, function(x) !is.null(x)))]
 
 # remove missing coordinates
+res <- res[unlist(lapply(res, function(x) "Lat" %in% names(x)))]
 res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
 
 
@@ -54,4 +55,6 @@ good_cols <- stringi::stri_encode(
                     as.character(good_cols), "Latin-ASCII"), "", "UTF-8")
 milakes <- res_df[,good_cols]
 
-devtools::use_data(milakes, overwrite = TRUE)
+milakes <- lake_clean(milakes)
+
+usethis::use_data(milakes, overwrite = TRUE)
