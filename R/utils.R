@@ -189,3 +189,35 @@ pull_position <- function(x, position){
   }
   x
 }
+
+#' Parse string representation of units package quantities
+#'
+#' @param x character string with unit in brackets
+#' @param target_unit target unit to convert to. optional
+#'
+#' @export
+#' @importFrom units as_units
+#' @examples
+#' x <- "1 [m]"
+#' x <- "8.5 [m]"
+#' parse_unit_brackets(x, "feet")
+parse_unit_brackets <- function(x, target_unit = NA){
+  if(is.na(x)){return(NA)}
+
+  num_string <- strsplit(x, " ")[[1]][1]
+
+  units_string <- strsplit(x, " ")[[1]][2:length(strsplit(x, " ")[[1]])]
+  units_string <- gsub("\\[", "", units_string)
+  units_string <- gsub("\\]", "", units_string)
+
+  res <- tryCatch(units::as_units(as.numeric(num_string), units_string),
+           warning = function(w) return(NA),
+           error = function(e) return(NA))
+
+  if(!is.na(target_unit)){
+    res <- tryCatch(units::set_units(res, target_unit, mode = "standard"),
+                    error = function(e) NA)
+  }
+
+  res
+}
