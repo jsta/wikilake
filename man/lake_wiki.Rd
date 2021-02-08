@@ -4,12 +4,14 @@
 \alias{lake_wiki}
 \title{lake_wiki}
 \usage{
-lake_wiki(lake_name, map = FALSE, ...)
+lake_wiki(lake_name, map = FALSE, clean = TRUE, ...)
 }
 \arguments{
 \item{lake_name}{character}
 
 \item{map}{logical produce map of lake location?}
+
+\item{clean}{logical enforce standardized units following wikilake::unit_key_()?}
 
 \item{...}{arguments passed to maps::map}
 }

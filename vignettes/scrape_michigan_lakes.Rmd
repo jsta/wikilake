@@ -42,9 +42,6 @@ res <- res[!(seq_len(length(res)) %in% grep("Mud Lake", res))]
 ```{r scrape tables, eval = FALSE}
 res <- lapply(res, lake_wiki)
 
-# remove lakes with missing metadata
-res <- res[unlist(lapply(res, function(x) !is.null(x)))]
-
 # remove missing coordinates
 res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
 ```
@@ -68,13 +65,13 @@ for(i in seq_len(length(res))){
 ```
 
 ```{r echo=FALSE, eval=FALSE}
-good_cols <- data.frame(as.numeric(as.character(apply(milakes,
+good_cols <- data.frame(as.numeric(as.character(apply(res_df,
                                             2, function(x) sum(!is.na(x))))))
-good_cols <- cbind(good_cols, names(milakes))
+good_cols <- cbind(good_cols, names(res_df))
 good_cols <- good_cols[good_cols[,1] > 20 ,2]
 good_cols <- as.character(good_cols)
 
-milakes <- res_df[,good_cols]
+res_df <- res_df[,good_cols]
 ```
 
 ```{r echo = FALSE}

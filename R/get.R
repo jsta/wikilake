@@ -1,8 +1,10 @@
 #' lake_wiki
 #' @param lake_name character
 #' @param map logical produce map of lake location?
+#' @param clean logical enforce standardized units following wikilake::unit_key_()?
 #' @param ... arguments passed to maps::map
 #' @importFrom tidyr pivot_wider
+#' @importFrom dplyr mutate matches
 #' @export
 #' @examples \dontrun{
 #' lake_wiki("Lake Peipsi")
@@ -37,7 +39,7 @@
 #' lake_wiki("Rainbow Lake (Waterford Township, Michigan)")
 #' }
 
-lake_wiki <- function(lake_name, map = FALSE, ...){
+lake_wiki <- function(lake_name, map = FALSE, clean = TRUE, ...){
 
   .lake_wiki <- function(lake_name, ...){
     res <- get_lake_wiki(lake_name)
@@ -61,8 +63,14 @@ lake_wiki <- function(lake_name, map = FALSE, ...){
     })
     ), check.names = FALSE)
 
+  res <- dplyr::mutate(res, dplyr::across(dplyr::matches("Lon|Lat"), as.numeric))
+
   if(map){
     map_lake_wiki(res, ...)
+  }
+
+  if(clean){
+    res <- lake_clean(res)
   }
 
   res

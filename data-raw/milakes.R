@@ -18,15 +18,11 @@ res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
 
 
 # Scape tables #####
-res <- lapply(res, lake_wiki)
-
-# remove lakes with missing metadata
-res <- res[unlist(lapply(res, function(x) !is.null(x)))]
+res_raw <- lapply(res, lake_wiki)
 
 # remove missing coordinates
-res <- res[unlist(lapply(res, function(x) "Lat" %in% names(x)))]
+res <- res_raw[unlist(lapply(res_raw, function(x) "Lat" %in% names(x)))]
 res <- res[unlist(lapply(res, function(x) !is.na(x[,"Lat"])))]
-
 
 # Collapse list to `data.frame` #####
 res_df_names <- unique(unlist(lapply(res, names)))
@@ -44,9 +40,9 @@ for(i in seq_len(length(res))){
 }
 
 # Keep only common columns #####
-good_cols <- data.frame(as.numeric(as.character(apply(milakes,
+good_cols <- data.frame(as.numeric(as.character(apply(res_df,
                                     2, function(x) sum(!is.na(x))))))
-good_cols <- cbind(good_cols, names(milakes))
+good_cols <- cbind(good_cols, names(res_df))
 # good_cols[order(good_cols[,1], decreasing = TRUE),]
 # hist(good_cols[,1])
 good_cols <- good_cols[good_cols[,1] > 20 ,2]
@@ -54,7 +50,5 @@ good_cols <- stringi::stri_encode(
                 stringi::stri_trans_general(
                     as.character(good_cols), "Latin-ASCII"), "", "UTF-8")
 milakes <- res_df[,good_cols]
-
-milakes <- lake_clean(milakes)
 
 usethis::use_data(milakes, overwrite = TRUE)
