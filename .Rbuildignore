@@ -11,3 +11,4 @@ vignettes/wptools.Rmd
 .envrc
 test.csv
 Makefile
+^CRAN-RELEASE$
