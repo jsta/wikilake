@@ -51,4 +51,6 @@ good_cols <- stringi::stri_encode(
                     as.character(good_cols), "Latin-ASCII"), "", "UTF-8")
 milakes <- res_df[,good_cols]
 
+
+milakes$Name <- iconv(milakes$Name, from="UTF-8", to="ASCII")
 usethis::use_data(milakes, overwrite = TRUE)
