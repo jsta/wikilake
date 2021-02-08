@@ -10,3 +10,4 @@
 vignettes/wptools.Rmd
 .envrc
 test.csv
+Makefile
