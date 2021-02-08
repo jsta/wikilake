@@ -5,9 +5,9 @@
 #' @importFrom sp coordinates
 #' @importFrom graphics points
 #' @examples \dontrun{
-#' map_lake_wiki(get_lake_wiki("Corey Lake"), "usa")
+#' map_lake_wiki(lake_wiki("Corey Lake"), database = "usa")
 #'
-#' map_lake_wiki(get_lake_wiki("Lake Nipigon"), regions = "Canada")
+#' map_lake_wiki(lake_wiki("Lake Nipigon"), regions = "Canada")
 #' }
 map_lake_wiki <- function(res, ...){
   coords <- res[,c("Lon", "Lat")]
