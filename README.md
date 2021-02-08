@@ -3,9 +3,8 @@
 
 # wikilake
 
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
 [![Travis-CI Build
 Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake)
