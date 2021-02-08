@@ -1,12 +1,9 @@
-# wikilake 0.6
+# wikilake 0.5
 
 * Bug fixes related to non-standard units
 * Bug fixes related to coordinate parsing
 * Added `lake_clean` function and `clean` argument to `lake_wiki` to standardize output units
-
-# wikilake 0.5
-
-* Add ability to pass a vector of names to lake_wiki (#16)
+* Added ability to pass a vector of names to lake_wiki (#16)
 
 # wikilake 0.4
 
