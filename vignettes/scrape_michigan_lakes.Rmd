@@ -38,7 +38,7 @@ res <- res[!(seq_len(length(res)) %in% grep("lakes", res))]
 res <- res[!(seq_len(length(res)) %in% grep("Mud Lake", res))]
 ```
 
-### Scape tables
+### Scrape tables
 ```{r scrape tables, eval = FALSE}
 res <- lapply(res, lake_wiki)
 
@@ -89,7 +89,6 @@ map("state", region = "michigan", mar = c(0,0,0,0))
 points(res_df, col = "red", pch = 19)
 ```
 
-
 ```{r lake depth distribution, eval=FALSE, echo=FALSE}
-hist(log(as.numeric(res_df$`Max. depth`)))
+hist(log(res_df$`Max. depth`), main = "", xlab = "Max depth (log(m))")
 ```
