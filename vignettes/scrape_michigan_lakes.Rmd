@@ -89,6 +89,6 @@ map("state", region = "michigan", mar = c(0,0,0,0))
 points(res_df, col = "red", pch = 19)
 ```
 
-```{r lake depth distribution, eval=TRUE, echo=FALSE}
+```{r lake depth distribution }
 hist(log(res_df$`Max. depth`), main = "", xlab = "Max depth (log(m))")
 ```
