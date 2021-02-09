@@ -4,7 +4,7 @@
 # wikilake
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
 [![Travis-CI Build
 Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake)
@@ -32,7 +32,7 @@ library(wikilake)
 ```
 
 ``` r
-# metadata only
+# metadata only, see units of numeric fields with wikilake::unit_key_()
 lake_wiki("Lake Mendota")
 #> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
 #>           Name                             Location                    Type
@@ -45,41 +45,47 @@ lake_wiki("Lake Mendota")
 #> 1          34.8               259 December 20 (average freezing date) 43.1066
 #>        Lon
 #> 1 -89.4247
-
-# pretty printing metadata
-knitr::kable(
-  dplyr::left_join( 
-  tidyr::pivot_longer(lake_wiki("Lake Mendota", clean = FALSE), 
-                      cols = tidyr::everything(),
-                      values_to = "values_raw",
-                      values_transform = list(values_raw = as.character)),
-  tidyr::pivot_longer(lake_wiki("Lake Mendota"), 
-                      cols = tidyr::everything(),
-                      values_to = "values_numeric",
-                      values_transform = list(values_numeric = as.character)),
-  by = "name"))
-#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
-#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
 ```
 
-| name              | values\_raw                          | values\_numeric                      |
+``` r
+# use the clean = FALSE argument to get raw data
+# (i.e. avoid parsing of numeric fields)
+lake_wiki("Lake Mendota", clean = FALSE)
+#> Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota
+#>           Name                             Location                    Type
+#> 1 Lake Mendota Dane County, Wisconsin,United States Natural freshwater lake
+#>   Primary inflows Primary outflows Catchment area Basin countries Max. length
+#> 1    Yahara River     Yahara River     562 [km^2]   United States   9.04 [km]
+#>   Max. width Surface area Average depth Max. depth             Water volume
+#> 1  6.61 [km] 9740 [acres]      12.8 [m]   25.3 [m] 500 million cubic metres
+#>   Residence time Shore length1 Surface elevation
+#> 1    4.5 [years]     34.8 [km]           259 [m]
+#>                                Frozen     Lat      Lon
+#> 1 December 20 (average freezing date) 43.1066 -89.4247
+```
+
+``` r
+# pretty printing metadata
+```
+
+| name              | values\_numeric                      | values\_raw                          |
 |:------------------|:-------------------------------------|:-------------------------------------|
 | Name              | Lake Mendota                         | Lake Mendota                         |
 | Location          | Dane County, Wisconsin,United States | Dane County, Wisconsin,United States |
 | Type              | Natural freshwater lake              | Natural freshwater lake              |
 | Primary inflows   | Yahara River                         | Yahara River                         |
 | Primary outflows  | Yahara River                         | Yahara River                         |
-| Catchment area    | 562 \[km^2\]                         | 562                                  |
+| Catchment area    | 562                                  | 562 \[km^2\]                         |
 | Basin countries   | United States                        | United States                        |
-| Max. length       | 9.04 \[km\]                          | 9.04                                 |
-| Max. width        | 6.61 \[km\]                          | 6.61                                 |
-| Surface area      | 9740 \[acres\]                       | 39.4165392201752                     |
-| Average depth     | 12.8 \[m\]                           | 12.8                                 |
-| Max. depth        | 25.3 \[m\]                           | 25.3                                 |
-| Water volume      | 500 million cubic metres             | NA                                   |
-| Residence time    | 4.5 \[years\]                        | 4.5                                  |
-| Shore length1     | 34.8 \[km\]                          | 34.8                                 |
-| Surface elevation | 259 \[m\]                            | 259                                  |
+| Max. length       | 9.04                                 | 9.04 \[km\]                          |
+| Max. width        | 6.61                                 | 6.61 \[km\]                          |
+| Surface area      | 39.4165392201752                     | 9740 \[acres\]                       |
+| Average depth     | 12.8                                 | 12.8 \[m\]                           |
+| Max. depth        | 25.3                                 | 25.3 \[m\]                           |
+| Water volume      | NA                                   | 500 million cubic metres             |
+| Residence time    | 4.5                                  | 4.5 \[years\]                        |
+| Shore length1     | 34.8                                 | 34.8 \[km\]                          |
+| Surface elevation | 259                                  | 259 \[m\]                            |
 | Frozen            | December 20 (average freezing date)  | December 20 (average freezing date)  |
 | Lat               | 43.1066                              | 43.1066                              |
 | Lon               | -89.4247                             | -89.4247                             |
