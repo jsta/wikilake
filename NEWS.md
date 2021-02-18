@@ -1,3 +1,7 @@
+# wikilake 0.6
+
+* Added `lake_wiki_browser` function to open lake pages in browser (#17)
+
 # wikilake 0.5
 
 * Bug fixes related to non-standard units

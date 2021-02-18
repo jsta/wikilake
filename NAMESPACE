@@ -3,6 +3,7 @@
 export(dms2dd)
 export(lake_clean)
 export(lake_wiki)
+export(lake_wiki_browser)
 export(parse_unit_brackets)
 import(WikipediR)
 import(rvest)
