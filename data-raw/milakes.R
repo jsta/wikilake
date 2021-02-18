@@ -17,7 +17,7 @@ res <- res[!(1:length(res) %in% grep("lakes", res))]
 res <- res[!(1:length(res) %in% grep("Mud Lake", res))]
 
 
-# Scape tables #####
+# Scrape tables #####
 res_raw <- lapply(res, lake_wiki)
 
 # remove missing coordinates
