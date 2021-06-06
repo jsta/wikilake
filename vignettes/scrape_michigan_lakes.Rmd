@@ -1,6 +1,6 @@
 ---
 title: "Scrape Michigan Lakes"
-author: "Joseph Stachelek"
+author: "Jemma Stachelek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
