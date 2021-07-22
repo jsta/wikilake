@@ -1,8 +1,8 @@
-pandoc: 2.11.2
-pkgdown: 1.5.1
+pandoc: '2.12'
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   scrape_michigan_lakes: scrape_michigan_lakes.html
   wptools: wptools.html
-last_built: 2021-02-09T18:34Z
+last_built: 2021-07-22T15:19Z
 

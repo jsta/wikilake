@@ -135,7 +135,7 @@
     <p>lake_wiki</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lake_wiki</span>(<span class='no'>lake_name</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>lake_wiki</span><span class='op'>(</span><span class='va'>lake_name</span>, map <span class='op'>=</span> <span class='cn'>FALSE</span>, clean <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,38 +160,39 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Peipsi"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Flagstaff Lake (Maine)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake George (Michigan-Ontario)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Michigan"</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='st'>"usa"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lac La Belle, Michigan"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Antoine"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Baikal"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Dockery Lake (Michigan)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Coldwater Lake"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Bankson Lake"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Fisher Lake (Michigan)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Beals Lake"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Devils Lake (Michigan)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Michigan"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Fletcher Pond"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Bella Vista (Michigan)"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Mendota"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Mendota"</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='st'>"usa"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Lake Nipigon"</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>regions</span> <span class='kw'>=</span> <span class='st'>"Canada"</span>)
-<span class='fu'>lake_wiki</span>(<span class='st'>"Trout Lake (Wisconsin)"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Peipsi"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Flagstaff Lake (Maine)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake George (Michigan-Ontario)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Michigan"</span>, map <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='st'>"usa"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lac La Belle, Michigan"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Antoine"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Baikal"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Dockery Lake (Michigan)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Coldwater Lake"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Bankson Lake"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Fisher Lake (Michigan)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Beals Lake"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Devils Lake (Michigan)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Michigan"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Fletcher Pond"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Bella Vista (Michigan)"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Mendota"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Mendota"</span>, map <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='st'>"usa"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Lake Nipigon"</span>, map <span class='op'>=</span> <span class='cn'>TRUE</span>, regions <span class='op'>=</span> <span class='st'>"Canada"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Trout Lake (Wisconsin)"</span><span class='op'>)</span>
 
 <span class='co'># a vector of lake names</span>
-<span class='fu'>lake_wiki</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Lake Mendota"</span>,<span class='st'>"Trout Lake (Wisconsin)"</span>))
-<span class='fu'>lake_wiki</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Lake Mendota"</span>,<span class='st'>"Trout Lake (Wisconsin)"</span>), <span class='kw'>map</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Lake Mendota"</span>,<span class='st'>"Trout Lake (Wisconsin)"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Lake Mendota"</span>,<span class='st'>"Trout Lake (Wisconsin)"</span><span class='op'>)</span>, map <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># throws warning on redirects</span>
-<span class='fu'>lake_wiki</span>(<span class='st'>"Beals Lake"</span>)
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Beals Lake"</span><span class='op'>)</span>
 
 <span class='co'># ignore notability box</span>
-<span class='fu'>lake_wiki</span>(<span class='st'>"Rainbow Lake (Waterford Township, Michigan)"</span>)
-}</div></pre>
+<span class='fu'>lake_wiki</span><span class='op'>(</span><span class='st'>"Rainbow Lake (Waterford Township, Michigan)"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -203,11 +204,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joseph Stachelek.</p>
+  <p>Developed by Jemma Stachelek.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

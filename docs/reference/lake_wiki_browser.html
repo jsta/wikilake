@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>dms2dd — dms2dd • wikilake</title>
+<title>lake_wiki_browser — lake_wiki_browser • wikilake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="dms2dd — dms2dd" />
-<meta property="og:description" content="Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees" />
+<meta property="og:title" content="lake_wiki_browser — lake_wiki_browser" />
+<meta property="og:description" content="lake_wiki_browser" />
 
 
 
@@ -126,31 +126,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>dms2dd</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jsta/wikilake/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>dms2dd.Rd</code></div>
+    <h1>lake_wiki_browser</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jsta/wikilake/blob/master/R/browser.R'><code>R/browser.R</code></a></small>
+    <div class="hidden name"><code>lake_wiki_browser.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert numeric coordinate vectors in degrees, minutes, and seconds to decimal degrees</p>
+    <p>lake_wiki_browser</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dms2dd</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lake_wiki_browser</span><span class='op'>(</span>lake_wiki_obj <span class='op'>=</span> <span class='cn'>NA</span>, lake_names <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>numeric vector of length 3 corresponding to degrees, minutes, and seconds</p></td>
+      <th>lake_wiki_obj</th>
+      <td><p>data.frame output of lake_wiki</p></td>
+    </tr>
+    <tr>
+      <th>lake_names</th>
+      <td><p>fallback character vector of lake names</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>25</span>,<span class='fl'>12</span>,<span class='fl'>53.66</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>80</span>,<span class='fl'>32</span>,<span class='fl'>00.61</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>dt</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>dms2dd</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1]  25.21491 -80.53350</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>lake_wiki_browser</span><span class='op'>(</span>lake_names <span class='op'>=</span> <span class='st'>"Lake Mendota"</span><span class='op'>)</span>
+<span class='fu'>lake_wiki_browser</span><span class='op'>(</span>lake_names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Lake Mendota"</span>, <span class='st'>"Lake Champlain"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>lake_wiki_browser</span><span class='op'>(</span><span class='fu'><a href='lake_wiki.html'>lake_wiki</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Lake Mendota"</span>, <span class='st'>"Lake Champlain"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

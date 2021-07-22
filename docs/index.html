@@ -106,10 +106,12 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wikilake</span>)
-<span class="co">#&gt; Loading required package: maps</span></pre></div>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># metadata only, see units of numeric fields with wikilake::unit_key_()</span>
-<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Lake Mendota"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jsta/wikilake">wikilake</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: maps</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># metadata only, see units of numeric fields with wikilake::unit_key_()</span>
+<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Lake Mendota"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota</span>
 <span class="co">#&gt;           Name                             Location                    Type</span>
 <span class="co">#&gt; 1 Lake Mendota Dane County, Wisconsin,United States Natural freshwater lake</span>
@@ -120,10 +122,11 @@
 <span class="co">#&gt;   Shore length1 Surface elevation                              Frozen     Lat</span>
 <span class="co">#&gt; 1          34.8               259 December 20 (average freezing date) 43.1066</span>
 <span class="co">#&gt;        Lon</span>
-<span class="co">#&gt; 1 -89.4247</span></pre></div>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># use the clean = FALSE argument to get raw data</span>
+<span class="co">#&gt; 1 -89.4247</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># use the clean = FALSE argument to get raw data</span>
 <span class="co"># (i.e. avoid parsing of numeric fields)</span>
-<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Lake Mendota"</span>, <span class="kw">clean</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Lake Mendota"</span>, clean <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Lake_Mendota</span>
 <span class="co">#&gt;           Name                             Location                    Type</span>
 <span class="co">#&gt; 1 Lake Mendota Dane County, Wisconsin,United States Natural freshwater lake</span>
@@ -134,8 +137,9 @@
 <span class="co">#&gt;   Residence time Shore length1 Surface elevation</span>
 <span class="co">#&gt; 1    4.5 [years]     34.8 [km]           259 [m]</span>
 <span class="co">#&gt;                                Frozen     Lat      Lon</span>
-<span class="co">#&gt; 1 December 20 (average freezing date) 43.1066 -89.4247</span></pre></div>
-<div class="sourceCode" id="cb4"><pre class="r"># pretty printing metadata</pre></div>
+<span class="co">#&gt; 1 December 20 (average freezing date) 43.1066 -89.4247</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># pretty printing metadata</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="20%">
@@ -176,8 +180,7 @@
 <tr class="even">
 <td align="left">Catchment area</td>
 <td align="left">562</td>
-<td align="left">562 <span class="math display"><em>k</em><em>m</em><sup>2</sup></span>
-</td>
+<td align="left">562 [km^2]</td>
 </tr>
 <tr class="odd">
 <td align="left">Basin countries</td>
@@ -187,32 +190,27 @@
 <tr class="even">
 <td align="left">Max. length</td>
 <td align="left">9.04</td>
-<td align="left">9.04 <span class="math display"><em>k</em><em>m</em></span>
-</td>
+<td align="left">9.04 [km]</td>
 </tr>
 <tr class="odd">
 <td align="left">Max. width</td>
 <td align="left">6.61</td>
-<td align="left">6.61 <span class="math display"><em>k</em><em>m</em></span>
-</td>
+<td align="left">6.61 [km]</td>
 </tr>
 <tr class="even">
 <td align="left">Surface area</td>
 <td align="left">39.4165392201752</td>
-<td align="left">9740 <span class="math display"><em>a</em><em>c</em><em>r</em><em>e</em><em>s</em></span>
-</td>
+<td align="left">9740 [acres]</td>
 </tr>
 <tr class="odd">
 <td align="left">Average depth</td>
 <td align="left">12.8</td>
-<td align="left">12.8 <span class="math display"><em>m</em></span>
-</td>
+<td align="left">12.8 [m]</td>
 </tr>
 <tr class="even">
 <td align="left">Max. depth</td>
 <td align="left">25.3</td>
-<td align="left">25.3 <span class="math display"><em>m</em></span>
-</td>
+<td align="left">25.3 [m]</td>
 </tr>
 <tr class="odd">
 <td align="left">Water volume</td>
@@ -222,20 +220,17 @@
 <tr class="even">
 <td align="left">Residence time</td>
 <td align="left">4.5</td>
-<td align="left">4.5 <span class="math display"><em>y</em><em>e</em><em>a</em><em>r</em><em>s</em></span>
-</td>
+<td align="left">4.5 [years]</td>
 </tr>
 <tr class="odd">
 <td align="left">Shore length1</td>
 <td align="left">34.8</td>
-<td align="left">34.8 <span class="math display"><em>k</em><em>m</em></span>
-</td>
+<td align="left">34.8 [km]</td>
 </tr>
 <tr class="even">
 <td align="left">Surface elevation</td>
 <td align="left">259</td>
-<td align="left">259 <span class="math display"><em>m</em></span>
-</td>
+<td align="left">259 [m]</td>
 </tr>
 <tr class="odd">
 <td align="left">Frozen</td>
@@ -254,9 +249,10 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># metadata + map</span>
-<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Gull Lake (Michigan)"</span>, <span class="kw">map</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># metadata + map</span>
+<span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Gull Lake (Michigan)"</span>, map <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)</span></code></pre></div>
 <p><img src="tools/images/worldmapping-1.png"><!-- --></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Name                                            Location</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States</span></span>
@@ -264,8 +260,9 @@
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   Gull Creek [1]   United States            8         34               268</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Lat     Lon</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 42.399 -85.411</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Gull Lake (Michigan)"</span>, <span class="kw">map</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">database</span> <span class="kw">=</span> <span class="st">"usa"</span>)
-<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Gull Lake (Michigan)"</span>, map <span class="op">=</span> <span class="cn">TRUE</span>, database <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Gull_Lake_(Michigan)</span></code></pre></div>
 <p><img src="tools/images/mapping-1.png"><!-- --></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Name                                            Location</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Gull Lake Kalamazoo / Barry counties, Michigan, United States</span></span>
@@ -273,8 +270,9 @@
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   Gull Creek [1]   United States            8         34               268</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Lat     Lon</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 42.399 -85.411</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Lake Nipigon"</span>, <span class="kw">map</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">regions</span> <span class="kw">=</span> <span class="st">"Canada"</span>)
-<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Lake_Nipigon</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Lake Nipigon"</span>, map <span class="op">=</span> <span class="cn">TRUE</span>, regions <span class="op">=</span> <span class="st">"Canada"</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Lake_Nipigon</span></code></pre></div>
 <p><img src="tools/images/mapping2-1.png"><!-- --></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           Name Location Lake type Primary outflows Catchment area</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Lake Nipigon  Ontario   Glacial    Nipigon River          25400</span></span>
@@ -282,8 +280,9 @@
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          Canada         4848          54.9        165     2.48e+11</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Shore length1 Surface elevation   Lat   Lon</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          1044               260 49.83 -88.5</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span>(<span class="st">"Cass Lake (Michigan)"</span>, <span class="kw">map</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">database</span> <span class="kw">=</span> <span class="st">"state"</span>, <span class="kw">regions</span> <span class="kw">=</span> <span class="st">"Michigan"</span>)
-<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Cass_Lake_(Michigan)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/lake_wiki.html">lake_wiki</a></span><span class="op">(</span><span class="st">"Cass Lake (Michigan)"</span>, map <span class="op">=</span> <span class="cn">TRUE</span>, database <span class="op">=</span> <span class="st">"state"</span>, regions <span class="op">=</span> <span class="st">"Michigan"</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data from: https://en.wikipedia.org/wiki/Cass_Lake_(Michigan)</span></code></pre></div>
 <p><img src="tools/images/mapping3-1.png"><!-- --></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Name                 Location Basin countries Surface area Max. depth</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Cass Lake Oakland County, Michigan   United States     5.179997         37</span></span>
@@ -314,7 +313,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Joseph Stachelek <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5924-2464" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jemma Stachelek <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5924-2464" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -332,11 +331,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Stachelek.</p>
+  <p>Developed by Jemma Stachelek.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

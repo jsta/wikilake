@@ -82,13 +82,13 @@
 
       
 
-      </header><script src="scrape_michigan_lakes_files/header-attrs-2.6.6/header-attrs.js"></script><div class="row">
+      </header><script src="scrape_michigan_lakes_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Scrape Michigan Lakes</h1>
-                        <h4 class="author">Joseph Stachelek</h4>
+                        <h4 class="author">Jemma Stachelek</h4>
             
-            <h4 class="date">2021-02-09</h4>
+            <h4 class="date">2021-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jsta/wikilake/blob/master/vignettes/scrape_michigan_lakes.Rmd"><code>vignettes/scrape_michigan_lakes.Rmd</code></a></small>
       <div class="hidden name"><code>scrape_michigan_lakes.Rmd</code></div>
@@ -97,7 +97,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wikilake</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jsta/wikilake">wikilake</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: maps</code></pre>
 <div id="generate-list-of-michigan-lakes" class="section level2">
 <h2 class="hasAnchor">
@@ -105,61 +106,68 @@
 <div id="get-wikipedia-url-of-category" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-wikipedia-url-of-category" class="anchor"></a>Get Wikipedia URL of Category</h3>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">WikipediR</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/WikipediR/man/page_info.html">page_info</a></span>(<span class="st">"en"</span>, <span class="st">"wikipedia"</span>,
-        <span class="kw">page</span> <span class="kw">=</span> <span class="st">"Category:Lakes of Michigan"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">WikipediR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WikipediR/man/page_info.html">page_info</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"wikipedia"</span>,
+  page <span class="op">=</span> <span class="st">"Category:Lakes of Michigan"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="scrape-lake-names" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scrape-lake-names" class="anchor"></a>Scrape lake names</h3>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">xml2</span><span class="kw ns">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span>(<span class="no">res</span>$<span class="no">query</span>$<span class="no">pages</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">canonicalurl</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">rvest</span><span class="kw ns">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_nodes.html">html_nodes</a></span>(<span class="no">res</span>, <span class="st">"#mw-pages .mw-category"</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">rvest</span><span class="kw ns">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_nodes.html">html_nodes</a></span>(<span class="no">res</span>, <span class="st">"li"</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">rvest</span><span class="kw ns">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_nodes.html">html_nodes</a></span>(<span class="no">res</span>, <span class="st">"a"</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="kw pkg">rvest</span><span class="kw ns">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_attr</a></span>(<span class="no">res</span>, <span class="st">"title"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">xml2</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">query</span><span class="op">$</span><span class="va">pages</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">canonicalurl</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"#mw-pages .mw-category"</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"li"</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"a"</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"title"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="remove-junk-names" class="section level3">
 <h3 class="hasAnchor">
 <a href="#remove-junk-names" class="anchor"></a>Remove junk names</h3>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="no">res</span>[!(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>)) <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span>(<span class="st">"List"</span>, <span class="no">res</span>))]
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="no">res</span>[!(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>)) <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span>(<span class="st">"Watershed"</span>, <span class="no">res</span>))]
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="no">res</span>[!(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>)) <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span>(<span class="st">"lakes"</span>, <span class="no">res</span>))]
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="no">res</span>[!(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>)) <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span>(<span class="st">"Mud Lake"</span>, <span class="no">res</span>))]</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"List"</span>, <span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Watershed"</span>, <span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"lakes"</span>, <span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Mud Lake"</span>, <span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 </div>
 <div id="scrape-tables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scrape-tables" class="anchor"></a>Scrape tables</h3>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">res</span>, <span class="no">lake_wiki</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">res</span>, <span class="va">lake_wiki</span><span class="op">)</span>
 
 <span class="co"># remove missing coordinates</span>
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="no">res</span>[<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">res</span>, <span class="kw">function</span>(<span class="no">x</span>) !<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">x</span>[,<span class="st">"Lat"</span>])))]</pre></body></html></div>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>, <span class="st">"Lat"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 </div>
 <div id="collapse-list-to-data-frame" class="section level3">
 <h3 class="hasAnchor">
 <a href="#collapse-list-to-data-frame" class="anchor"></a>Collapse list to <code>data.frame</code>
 </h3>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">res_df_names</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">res</span>, <span class="no">names</span>)))
-<span class="no">res_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">NA</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>),
-                                <span class="kw">ncol</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res_df_names</span>)))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">res_df</span>) <span class="kw">&lt;-</span> <span class="no">res_df_names</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res</span>))){
-  <span class="no">dt_pad</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">NA</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">1</span>,
-              <span class="kw">ncol</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">res_df_names</span>) - <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="no">res</span><span class="kw">[[</span><span class="no">i</span>]])))
-  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">dt_pad</span>) <span class="kw">&lt;-</span> <span class="no">res_df_names</span>[!(<span class="no">res_df_names</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">res</span><span class="kw">[[</span><span class="no">i</span>]]))]
-  <span class="no">dt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">res</span><span class="kw">[[</span><span class="no">i</span>]], <span class="no">dt_pad</span>)
-  <span class="no">dt</span> <span class="kw">&lt;-</span> <span class="no">dt</span>[,<span class="no">res_df_names</span>]
-  <span class="no">res_df</span>[<span class="no">i</span>,] <span class="kw">&lt;-</span> <span class="no">dt</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_df_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">res</span>, <span class="va">names</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">res_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>,
+  ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res_df_names</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">res_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">res_df_names</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">dt_pad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fl">1</span>,
+    ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res_df_names</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">res</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dt_pad</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">res_df_names</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="va">res_df_names</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">res</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">res</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">dt_pad</span><span class="op">)</span>
+  <span class="va">dt</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span>, <span class="va">res_df_names</span><span class="op">]</span>
+  <span class="va">res_df</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="va">dt</span>
+<span class="op">}</span></code></pre></div>
 </div>
 <div id="map-lakes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#map-lakes" class="anchor"></a>Map lakes</h3>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sp</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/">sp</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span>(<span class="no">res_df</span>) <span class="kw">&lt;-</span> ~<span class="no">Lon</span> + <span class="no">Lat</span>
-<span class="fu">map</span>(<span class="st">"state"</span>, <span class="kw">region</span> <span class="kw">=</span> <span class="st">"michigan"</span>, <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="no">res_df</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">res_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="op">~</span> <span class="va">Lon</span> <span class="op">+</span> <span class="va">Lat</span>
+<span class="fu">map</span><span class="op">(</span><span class="st">"state"</span>, region <span class="op">=</span> <span class="st">"michigan"</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">res_df</span>, col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
 <p><img src="scrape_michigan_lakes_files/figure-html/map%20lakes-1.png" width="700" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">res_df</span>$<span class="no">`Max. depth`</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="st">""</span>, <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Max depth (log(m))"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">res_df</span><span class="op">$</span><span class="va">`Max. depth`</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">"Max depth (log(m))"</span><span class="op">)</span></code></pre></div>
 <p><img src="scrape_michigan_lakes_files/figure-html/lake%20depth%20distribution-1.png" width="700"></p>
 </div>
 </div>
@@ -176,11 +184,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Stachelek.</p>
+  <p>Developed by Jemma Stachelek.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
