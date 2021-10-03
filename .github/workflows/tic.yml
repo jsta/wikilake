@@ -109,7 +109,7 @@ jobs:
 
       - name: "[Custom block] Install reticulate conda env"
         run: |
-          conda activate base
+          source activate base
           Rscript -e "library(reticulate); py_install('wptools')"
 
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
