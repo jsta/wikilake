@@ -104,11 +104,12 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:          
           miniconda-version: "latest"                    
-          channels: conda-forge, defaults
+          channels: conda-forge
           auto-activate-base: true          
 
       - name: "[Custom block] Install reticulate conda env"
-        run: Rscript -e "library(reticulate); py_install('wptools')"
+        run: conda activate base
+        Rscript -e "library(reticulate); py_install('wptools')"
 
       # macOS devel needs its own stage because we need to work with an option to suppress the usage of binaries
       - name: "[Stage] Prepare & Install (macOS-devel)"
