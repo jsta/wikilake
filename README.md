@@ -6,8 +6,7 @@
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wikilake)](https://cran.r-project.org/package=wikilake)
-[![Travis-CI Build
-Status](https://travis-ci.org/jsta/wikilake.svg?branch=master)](https://travis-ci.org/jsta/wikilake)
+[![build](https://github.com/jsta/wikilake/actions/workflows/tic.yml/badge.svg)](https://github.com/jsta/wikilake/actions/workflows/tic.yml)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/wikilake)](https://CRAN.R-project.org/package=wikilake)
 
