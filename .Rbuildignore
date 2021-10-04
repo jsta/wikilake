@@ -12,3 +12,4 @@ vignettes/wptools.Rmd
 test.csv
 Makefile
 ^CRAN-RELEASE$
+.github
