@@ -13,3 +13,4 @@ test.csv
 Makefile
 ^CRAN-RELEASE$
 .github
+^revdep$
