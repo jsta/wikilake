@@ -59,12 +59,13 @@ is_not_lake_page <- function(res, meta_index) {
   if (no_meta_index) meta_index <- 1
   res <- rvest::html_table(res[meta_index])[[1]]
 
-  no_meta_index & !any(suppressWarnings(stringr::str_detect(unlist(res),
-    c("lake",
+  has_keywords <- !any(sapply(c("lake",
       "tributaries",
       "outflow",
       "elevation",
-      "coordinates"))))
+      "coordinates"), function(x) stringr::str_detect(unlist(res), x)))
+
+  no_meta_index & has_keywords
 }
 
 tidy_coordinates <- function(res) {
