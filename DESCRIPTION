@@ -1,8 +1,8 @@
 Package: wikilake
 Title: Scrape Lake Metadata Tables from Wikipedia 
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: c(
-    person("Jemma", "Stachelek", email = "stachel2@msu.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5924-2464"))
+    person("Jemma", "Stachelek", email = "jemma.stachelek@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5924-2464"))
     )
 Description: Scrape lake metadata tables from Wikipedia <https://www.wikipedia.org/>. 
 Imports:

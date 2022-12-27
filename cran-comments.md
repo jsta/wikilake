@@ -1,6 +1,6 @@
 ## Test environments
 
-* ubuntu 20 (on ghactions), R 4.1.1
+* ubuntu 20 (on ghactions), R 4.2.2
 * win-builder (devel and release)
 
 ## R CMD check results

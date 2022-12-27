@@ -1,3 +1,7 @@
+# wikilake 0.7
+
+* Bug fix related to vectorized stringr::str_detect operations
+
 # wikilake 0.6
 
 * Added `lake_wiki_browser` function to open lake pages in browser (#17)
