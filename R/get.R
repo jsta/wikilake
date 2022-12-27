@@ -83,7 +83,8 @@ lake_wiki <- function(lake_name, map = FALSE, clean = TRUE, ...) {
 #' @param lake_name character
 #' @param cond character stopping condition
 #' @examples \dontrun{
-#' get_lake_wiki("Lake Nipigon")
+#' lake_name <- "Lake Nipigon"
+#' get_lake_wiki(lake_name)
 #' }
 get_lake_wiki <- function(lake_name, cond = NA) {
   # display page link
@@ -118,8 +119,7 @@ get_lake_wiki <- function(lake_name, cond = NA) {
       res <- res[!apply(res, 1, function(x) all(x == names(res)[1])), ]
 
       res <- suppressWarnings(apply(res, 2,
-        function(x) stri_encode(stri_trans_general(x,
-          "Latin-ASCII"), "", "UTF-8")))
+        function(x) stri_encode(stri_trans_general(x,"Latin-ASCII"), "", "UTF-8")))
     },
     error = function(cond) {
       message("'", paste0(lake_name,
