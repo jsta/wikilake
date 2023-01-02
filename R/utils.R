@@ -20,6 +20,15 @@ tidy_lake_df <- function(lake) {
   lake <- rbind(c("Name", colnames(lake)[1]), lake)
   res  <- list_to_df(lake)
 
+  # rm junk columns
+  res <- res[, !stringr::str_detect(names(res), "\\w\\sLake")]
+  # res <- res[, !stringr::str_detect(names(res), "Lach\\s\\w")]
+  if("Location" %in% names(res)){
+    if (which(names(res) == "Location") > 2) {
+      res <- res[,c(1, 3:ncol(res))]
+    }
+  }
+
   res <- tidy_coordinates(res)
   res <- tidy_depths(res)
   res <- rm_line_breaks(res)
@@ -38,12 +47,31 @@ list_to_df <- function(ll) {
 get_content <- function(lake_name) {
   res <- WikipediR::page_content("en", "wikipedia", page_name = lake_name,
     as_wikitext = FALSE)
+
+  has_wb_infobox <- function(x) {
+    # x <- res$parse$text[[1]]    
+    infobox_string <- stringr::str_extract_all(x,"Infobox_.{13}")[[1]]
+    if(length(infobox_string) > 0) {
+      infobox_string == "Infobox_body_of_water"
+    }else{
+      TRUE
+    }
+  }  
+
+  if (!has_wb_infobox(res$parse$text[[1]])) {
+    return(NA)
+  }
+
   res <- res$parse$text[[1]]
   res <- xml2::read_html(res, encoding = "UTF-8")
   res
 }
 
 is_redirect <- function(res) {
+  if (is.na(res)) {
+    return(FALSE)
+  }
+
   length(
     grep("redirect",
       rvest::html_attr(rvest::html_nodes(res, "div"), "class"))
@@ -210,6 +238,10 @@ parse_unit_brackets <- function(x, target_unit = NA) {
   num_string <- strsplit(x, " ")[[1]][1]
 
   units_string <- strsplit(x, " ")[[1]][2:length(strsplit(x, " ")[[1]])]
+  # handle "sq" "ft"
+  # if (length(units_string) > 1) {
+  #   units_string <- paste0(units_string, collapse = " ")
+  # }
   units_string <- gsub("\\[", "", units_string)
   units_string <- gsub("\\]", "", units_string)
 

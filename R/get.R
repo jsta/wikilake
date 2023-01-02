@@ -112,10 +112,10 @@ get_lake_wiki <- function(lake_name, cond = NA) {
       res <- rvest::html_table(res[max(meta_index)])[[1]]
 
       # create missing names
-      # rm rows that are just repeating the lake name
       if (all(nchar(names(res)) <  3)) {
         names(res) <- res[1, ]
       }
+      # rm rows that are just repeating the lake name
       res <- res[!apply(res, 1, function(x) all(x == names(res)[1])), ]
 
       res <- suppressWarnings(apply(res, 2,
@@ -123,8 +123,7 @@ get_lake_wiki <- function(lake_name, cond = NA) {
     },
     error = function(cond) {
       message("'", paste0(lake_name,
-        "' is missing a metadata table or
-                        does not have its own page"))
+        "' is missing a metadata table, does not have its own page, or is not a lake"))
       return(NA)
     }
   )
